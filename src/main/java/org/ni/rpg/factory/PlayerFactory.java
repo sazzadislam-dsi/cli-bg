@@ -1,7 +1,8 @@
-package org.ni.rpg.entity;
+package org.ni.rpg.factory;
 
 import org.ni.rpg.composite.GameObject;
-import org.ni.rpg.composite.GameObjectAbstractFactory;
+import org.ni.rpg.entity.*;
+import org.ni.rpg.factory.GameObjectAbstractFactory;
 import org.ni.rpg.strategy.DrawStrategy;
 
 public class PlayerFactory implements GameObjectAbstractFactory {
@@ -28,7 +29,7 @@ public class PlayerFactory implements GameObjectAbstractFactory {
     }
 
     @Override
-    public GameObject createGameObject() {
+    public GameObject createPlayer() {
         return new Player(appearance, attribute, name, description, health, direction, weapon, shield, drawStrategy);
     }
 }

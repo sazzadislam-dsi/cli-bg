@@ -21,9 +21,4 @@ public class Shield extends GameObject {
         return drawStrategy.draw(characters,getAppearance(),getAttribute());
     }
 
-
-    @Override
-    public String getName() {
-        return null;
-    }
 }

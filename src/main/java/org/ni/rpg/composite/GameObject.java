@@ -34,5 +34,4 @@ public abstract class GameObject{
         this.attribute = attribute;
     }
 
-    public abstract String getName();
 }

@@ -31,7 +31,6 @@ public class Player extends GameObject {
         return drawStrategy.draw(characters,getAppearance(),getAttribute());
     }
 
-    @Override
     public String getName() {
         return this.name;
     }
