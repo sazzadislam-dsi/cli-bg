@@ -8,13 +8,13 @@ import org.ni.rpg.strategy.DrawStrategy;
  */
 public class Player extends GameObject {
 
-    String name;
-    String description;
-    double health;
-    char direction;
-    Weapon weapon;
-    Shield shield;
-    DrawStrategy drawStrategy;
+    private String name;
+    private String description;
+    private double health;
+    private char direction;
+    private Weapon weapon;
+    private Shield shield;
+    private DrawStrategy drawStrategy;
 
     public Player(Appearance appearance, Attribute attribute, String name, String description, double health, char direction, Weapon weapon, Shield shield, DrawStrategy drawStrategy) {
         super(appearance, attribute);

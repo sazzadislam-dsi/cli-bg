@@ -8,8 +8,8 @@ import org.ni.rpg.entity.Attribute;
  */
 public abstract class GameObject{
 
-    protected Appearance appearance;
-    protected Attribute attribute;
+    private Appearance appearance;
+    private Attribute attribute;
 
     public abstract char[][] draw(char[][] characters);
 

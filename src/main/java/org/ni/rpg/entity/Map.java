@@ -10,7 +10,7 @@ import java.util.List;
  */
 public class Map extends GameObject {
 
-    List<GameObject> gameObjects = new ArrayList<>();
+    private List<GameObject> gameObjects = new ArrayList<>();
 
     public Map(Appearance appearance, Attribute attribute) {
         super(appearance, attribute);

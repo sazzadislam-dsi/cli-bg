@@ -8,8 +8,8 @@ import org.ni.rpg.strategy.DrawStrategy;
  */
 public class Shield extends GameObject {
 
-    double protection;
-    DrawStrategy drawStrategy;
+    private double protection;
+    private DrawStrategy drawStrategy;
 
     public Shield(Appearance appearance, Attribute attribute, double protection, DrawStrategy drawStrategy) {
         super(appearance, attribute);

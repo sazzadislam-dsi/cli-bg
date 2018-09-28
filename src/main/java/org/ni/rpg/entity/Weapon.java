@@ -8,9 +8,9 @@ import org.ni.rpg.strategy.DrawStrategy;
  */
 public class Weapon extends GameObject {
 
-    double attack;
-    int range;
-    DrawStrategy drawStrategy;
+    private double attack;
+    private int range;
+    private DrawStrategy drawStrategy;
 
     public Weapon(Appearance appearance, Attribute attribute, double attack, int range, DrawStrategy drawStrategy) {
         super(appearance, attribute);

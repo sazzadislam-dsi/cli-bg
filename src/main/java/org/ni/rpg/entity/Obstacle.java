@@ -7,7 +7,7 @@ import org.ni.rpg.strategy.DrawStrategy;
  * Created by nazmul on 9/29/2018.
  */
 public class Obstacle extends GameObject {
-    DrawStrategy drawStrategy;
+    private DrawStrategy drawStrategy;
 
     public Obstacle(Appearance appearance, Attribute attribute, DrawStrategy drawStrategy) {
         super(appearance, attribute);

@@ -4,17 +4,15 @@ package org.ni.rpg.entity;
  * Created by nazmul on 9/29/2018.
  */
 public class Attribute {
-    boolean canMove;
-    boolean visible;
-    boolean goThrough;
-    boolean takeDamage;
-    boolean canBeKilled;
-    boolean killed;
-    boolean removeAfterKilled;
+    private boolean canMove;
+    private boolean goThrough;
+    private boolean takeDamage;
+    private boolean canBeKilled;
+    private boolean killed;
+    private boolean removeAfterKilled;
 
-    public Attribute(boolean canMove, boolean visible, boolean goThrough, boolean takeDamage, boolean canBeKilled, boolean killed, boolean removeAfterKilled) {
+    public Attribute(boolean canMove, boolean goThrough, boolean takeDamage, boolean canBeKilled, boolean killed, boolean removeAfterKilled) {
         this.canMove = canMove;
-        this.visible = visible;
         this.goThrough = goThrough;
         this.takeDamage = takeDamage;
         this.canBeKilled = canBeKilled;
@@ -28,14 +26,6 @@ public class Attribute {
 
     public void setCanMove(boolean canMove) {
         this.canMove = canMove;
-    }
-
-    public boolean isVisible() {
-        return visible;
-    }
-
-    public void setVisible(boolean visible) {
-        this.visible = visible;
     }
 
     public boolean isGoThrough() {
