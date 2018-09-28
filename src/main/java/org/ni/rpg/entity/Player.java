@@ -31,4 +31,73 @@ public class Player extends GameObject {
         return drawStrategy.draw(characters,getAppearance(),getAttribute());
     }
 
+    @Override
+    public String getName() {
+        return this.name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public double getHealth() {
+        return health;
+    }
+
+    public void setHealth(double health) {
+        this.health = health;
+    }
+
+    public char getDirection() {
+        return direction;
+    }
+
+    public void setDirection(char direction) {
+        this.direction = direction;
+    }
+
+    public Weapon getWeapon() {
+        return weapon;
+    }
+
+    public void setWeapon(Weapon weapon) {
+        this.weapon = weapon;
+    }
+
+    public Shield getShield() {
+        return shield;
+    }
+
+    public void setShield(Shield shield) {
+        this.shield = shield;
+    }
+
+    public DrawStrategy getDrawStrategy() {
+        return drawStrategy;
+    }
+
+    public void setDrawStrategy(DrawStrategy drawStrategy) {
+        this.drawStrategy = drawStrategy;
+    }
+
+    @Override
+    public String toString() {
+        return "Player{" +
+                "name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", health=" + health +
+                ", direction=" + direction +
+                ", weapon=" + weapon +
+                ", shield=" + shield +
+                ", drawStrategy=" + drawStrategy +
+                '}';
+    }
 }

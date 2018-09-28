@@ -33,4 +33,6 @@ public abstract class GameObject{
     public void setAttribute(Attribute attribute) {
         this.attribute = attribute;
     }
+
+    public abstract String getName();
 }

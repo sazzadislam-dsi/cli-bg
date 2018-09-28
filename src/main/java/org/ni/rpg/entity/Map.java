@@ -31,4 +31,9 @@ public class Map extends GameObject {
         }
         return characters;
     }
+
+    @Override
+    public String getName() {
+        return null;
+    }
 }

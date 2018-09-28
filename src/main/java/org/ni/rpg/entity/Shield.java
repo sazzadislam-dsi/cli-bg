@@ -20,4 +20,10 @@ public class Shield extends GameObject {
     public char[][] draw(char[][] characters) {
         return drawStrategy.draw(characters,getAppearance(),getAttribute());
     }
+
+
+    @Override
+    public String getName() {
+        return null;
+    }
 }
