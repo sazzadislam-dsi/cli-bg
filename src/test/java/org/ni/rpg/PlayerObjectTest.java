@@ -1,7 +1,6 @@
 package org.ni.rpg;
 
 import org.junit.Test;
-import org.ni.rpg.composite.GameObject;
 import org.ni.rpg.entity.*;
 import org.ni.rpg.factory.GameObjectFactory;
 import org.ni.rpg.factory.PlayerFactory;
@@ -22,7 +21,7 @@ public class PlayerObjectTest {
         Weapon weapon = new Weapon(appearance, attribute, 50, 3, drawStrategy);
         Shield shield = new Shield(appearance, attribute, 50, drawStrategy);
 
-        Player player = (Player)GameObjectFactory.createPlayer(new PlayerFactory(appearance, attribute, "Nazmul", "wolverine", 100, 'r', weapon, shield, drawStrategy));
+        Player player = (Player)GameObjectFactory.createGameObject(new PlayerFactory(appearance, attribute, "Nazmul", "wolverine", 100, 'r', weapon, shield, drawStrategy));
         System.out.println(player);
         assertNotNull(player);
         assertEquals(player.getName(), "Nazmul");

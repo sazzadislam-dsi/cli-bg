@@ -29,7 +29,7 @@ public class PlayerFactory implements GameObjectAbstractFactory {
     }
 
     @Override
-    public GameObject createPlayer() {
+    public GameObject createGameObject() {
         return new Player(appearance, attribute, name, description, health, direction, weapon, shield, drawStrategy);
     }
 }
