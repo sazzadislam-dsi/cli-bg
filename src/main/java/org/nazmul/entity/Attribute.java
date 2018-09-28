@@ -12,6 +12,16 @@ public class Attribute {
     boolean killed;
     boolean removeAfterKilled;
 
+    public Attribute(boolean canMove, boolean visible, boolean goThrough, boolean takeDamage, boolean canBeKilled, boolean killed, boolean removeAfterKilled) {
+        this.canMove = canMove;
+        this.visible = visible;
+        this.goThrough = goThrough;
+        this.takeDamage = takeDamage;
+        this.canBeKilled = canBeKilled;
+        this.killed = killed;
+        this.removeAfterKilled = removeAfterKilled;
+    }
+
     public boolean isCanMove() {
         return canMove;
     }

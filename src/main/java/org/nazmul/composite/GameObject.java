@@ -16,6 +16,16 @@ public abstract class GameObject{
     String color;
     Attribute attribute;
 
+    public GameObject(int positionX, int positionY, int height, int width, char[][] content, String color, Attribute attribute) {
+        this.positionX = positionX;
+        this.positionY = positionY;
+        this.height = height;
+        this.width = width;
+        this.content = content;
+        this.color = color;
+        this.attribute = attribute;
+    }
+
     public abstract char[][] draw(char[][] characters);
 
     public int getPositionX() {

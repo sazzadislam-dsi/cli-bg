@@ -12,6 +12,11 @@ public class Map extends GameObject {
 
     List<GameObject> gameObjects = new ArrayList<>();
 
+    public Map(int positionX, int positionY, int height, int width, char[][] content, String color, Attribute attribute) {
+        super(positionX, positionY, height, width, content, color, attribute);
+
+    }
+
     public void addGameObject(GameObject gameObject){
         gameObjects.add(gameObject);
     }
