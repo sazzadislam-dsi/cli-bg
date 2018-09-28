@@ -10,6 +10,6 @@ public class Shield extends GameObject {
     double protection;
 
     public char[][] draw(char[][] characters) {
-        return new char[0][];
+        return characters;
     }
 }

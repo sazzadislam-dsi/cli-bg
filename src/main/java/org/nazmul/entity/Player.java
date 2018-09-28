@@ -13,7 +13,7 @@ public class Player extends GameObject {
     char direction;
 
     public char[][] draw(char[][] characters) {
-        return new char[0][];
+        return characters;
     }
 
 }

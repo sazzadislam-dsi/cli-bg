@@ -8,6 +8,6 @@ import org.nazmul.strategy.DrawStrategy;
 public class GameObjectDrawStrategy implements DrawStrategy {
     @Override
     public char[][] draw(char[][] characters) {
-        return new char[0][];
+        return characters;
     }
 }
