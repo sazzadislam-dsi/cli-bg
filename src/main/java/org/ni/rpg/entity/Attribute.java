@@ -1,4 +1,4 @@
-package org.nazmul.entity;
+package org.ni.rpg.entity;
 
 /**
  * Created by nazmul on 9/29/2018.

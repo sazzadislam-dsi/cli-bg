@@ -1,6 +1,6 @@
-package org.nazmul.entity;
+package org.ni.rpg.entity;
 
-import org.nazmul.composite.GameObject;
+import org.ni.rpg.composite.GameObject;
 
 import java.util.ArrayList;
 import java.util.List;

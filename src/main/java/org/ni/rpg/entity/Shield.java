@@ -1,7 +1,7 @@
-package org.nazmul.entity;
+package org.ni.rpg.entity;
 
-import org.nazmul.composite.GameObject;
-import org.nazmul.strategy.DrawStrategy;
+import org.ni.rpg.composite.GameObject;
+import org.ni.rpg.strategy.DrawStrategy;
 
 /**
  * Created by nazmul on 9/29/2018.

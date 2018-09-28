@@ -1,7 +1,6 @@
-package org.nazmul.composite;
+package org.ni.rpg.composite;
 
-import org.nazmul.entity.Attribute;
-import org.nazmul.strategy.DrawStrategy;
+import org.ni.rpg.entity.Attribute;
 
 /**
  * Created by nazmul on 9/28/2018.

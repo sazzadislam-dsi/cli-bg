@@ -1,6 +1,6 @@
-package org.nazmul.strategy.impl;
+package org.ni.rpg.strategy.impl;
 
-import org.nazmul.strategy.DrawStrategy;
+import org.ni.rpg.strategy.DrawStrategy;
 
 /**
  * Created by nazmul on 9/29/2018.
