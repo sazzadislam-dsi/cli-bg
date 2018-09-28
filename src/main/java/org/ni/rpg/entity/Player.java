@@ -16,8 +16,8 @@ public class Player extends GameObject {
     Shield shield;
     DrawStrategy drawStrategy;
 
-    public Player(int positionX, int positionY, int height, int width, char[][] content, String color, Attribute attribute, String name, String description, double health, char direction, Weapon weapon, Shield shield, DrawStrategy drawStrategy) {
-        super(positionX, positionY, height, width, content, color, attribute);
+    public Player(Appearance appearance, Attribute attribute, String name, String description, double health, char direction, Weapon weapon, Shield shield, DrawStrategy drawStrategy) {
+        super(appearance, attribute);
         this.name = name;
         this.description = description;
         this.health = health;
@@ -28,7 +28,7 @@ public class Player extends GameObject {
     }
 
     public char[][] draw(char[][] characters) {
-        return drawStrategy.draw(characters);
+        return drawStrategy.draw(characters,getAppearance(),getAttribute());
     }
 
 }

@@ -11,13 +11,13 @@ public class Shield extends GameObject {
     double protection;
     DrawStrategy drawStrategy;
 
-    public Shield(int positionX, int positionY, int height, int width, char[][] content, String color, Attribute attribute, double protection, DrawStrategy drawStrategy) {
-        super(positionX, positionY, height, width, content, color, attribute);
+    public Shield(Appearance appearance, Attribute attribute, double protection, DrawStrategy drawStrategy) {
+        super(appearance, attribute);
         this.protection = protection;
         this.drawStrategy = drawStrategy;
     }
 
     public char[][] draw(char[][] characters) {
-        return drawStrategy.draw(characters);
+        return drawStrategy.draw(characters,getAppearance(),getAttribute());
     }
 }
