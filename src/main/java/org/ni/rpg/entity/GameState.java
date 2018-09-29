@@ -53,4 +53,8 @@ public class GameState extends GameObject {
     public void setPlayerId(String playerId) {
         this.playerId = playerId;
     }
+
+    public GameObject getGameObjct(String key) {
+        return gameObjects.get(key);
+    }
 }
