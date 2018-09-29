@@ -2,6 +2,8 @@ package org.ni.rpg.entity;
 
 import org.ni.rpg.composite.GameObject;
 import org.ni.rpg.exception.FrameSizeOutOfBound;
+import org.ni.rpg.utils.Commons;
+import org.ni.rpg.utils.Config;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,6 +41,7 @@ public class GameState extends GameObject {
     }
 
     public Character[][] draw(Character[][] characters) throws FrameSizeOutOfBound {
+        characters = Commons.generateGameStateContent(getAppearance().getDimension().getHeight(),getAppearance().getDimension().getWidth());
         for(GameObject gameObject : gameObjects.values())
         {
             characters = gameObject.draw(characters);
