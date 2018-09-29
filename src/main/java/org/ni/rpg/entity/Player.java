@@ -8,6 +8,7 @@ import org.ni.rpg.strategy.DrawStrategy;
  * Created by nazmul on 9/29/2018.
  */
 public class Player extends GameObject {
+    private static final long serialversionUID = 538219553L;
 
     private String name;
     private String description;
@@ -93,6 +94,14 @@ public class Player extends GameObject {
 
     public void setDrawStrategy(DrawStrategy drawStrategy) {
         this.drawStrategy = drawStrategy;
+    }
+
+    public int getSpeed() {
+        return speed;
+    }
+
+    public void setSpeed(int speed) {
+        this.speed = speed;
     }
 
     @Override

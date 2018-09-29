@@ -30,10 +30,12 @@ public class GameController {
         this.gameEngine = gameEngine;
     }
 
-    public void actionOnKeyEvent(String givenInput) throws FrameSizeOutOfBound, IOException {
+    public void actionOnKeyEvent(String givenInput) throws FrameSizeOutOfBound, IOException, ClassNotFoundException {
         if(gameEngine.getCURRENT_STATE().equals(State.MAIN_MENU)) {
             if(givenInput.equals(ONE)){
                 gameEngine.playerCreationStart();
+            }else if(givenInput.equals(TWO)){
+                gameEngine.gameLoad();
             }else if(givenInput.equals(THREE)){
                 gameEngine.shutdown();
             }else{

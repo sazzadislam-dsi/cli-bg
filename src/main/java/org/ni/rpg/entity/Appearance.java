@@ -1,9 +1,13 @@
 package org.ni.rpg.entity;
 
+import java.io.Serializable;
+
 /**
  * Created by nazmul on 9/29/2018.
  */
-public class Appearance {
+public class Appearance implements Serializable{
+    private static final long serialversionUID = 538219547L;
+
     private int positionX;
     private int positionY;
     private Dimension dimension;

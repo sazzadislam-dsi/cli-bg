@@ -8,10 +8,14 @@ import org.ni.rpg.exception.FrameSizeOutOfBound;
 import org.ni.rpg.strategy.DrawStrategy;
 import org.ni.rpg.utils.Commons;
 
+import java.io.Serializable;
+
 /**
  * Created by nazmul on 9/29/2018.
  */
-public class GameObjectDrawStrategy implements DrawStrategy {
+public class GameObjectDrawStrategy implements DrawStrategy,Serializable {
+    private static final long serialversionUID = 538219549L;
+
     @Override
     public Character[][] draw(Character[][] content, Appearance appearance, Attribute attribute) throws FrameSizeOutOfBound {
         if((appearance.isVisible() || !attribute.isKilled() || (attribute.isKilled()&&!attribute.isRemoveAfterKilled())) && appearance.getDimension().getWidth() > 0 && appearance.getDimension().getHeight() > 0){

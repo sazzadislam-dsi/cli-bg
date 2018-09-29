@@ -8,6 +8,7 @@ import org.ni.rpg.strategy.DrawStrategy;
  * Created by nazmul on 9/29/2018.
  */
 public class Weapon extends GameObject {
+    private static final long serialversionUID = 538219550L;
 
     private double attack;
     private int range;

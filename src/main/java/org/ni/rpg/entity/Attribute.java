@@ -1,9 +1,13 @@
 package org.ni.rpg.entity;
 
+import java.io.Serializable;
+
 /**
  * Created by nazmul on 9/29/2018.
  */
-public class Attribute {
+public class Attribute implements Serializable {
+    private static final long serialversionUID = 538219545L;
+
     private boolean canMove;
     private boolean goThrough;
     private boolean takeDamage;

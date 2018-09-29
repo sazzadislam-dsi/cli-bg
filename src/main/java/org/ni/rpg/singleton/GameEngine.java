@@ -37,7 +37,7 @@ public class GameEngine {
         return instance;
     }
 
-    public void init() throws FrameSizeOutOfBound {
+    public void init() throws FrameSizeOutOfBound, IOException, ClassNotFoundException {
         showStartMenu();
         keyBoardListener.listen();
     }
@@ -49,7 +49,7 @@ public class GameEngine {
         menuRenderer.showStartMenuAnim();
     }
 
-    public void registerKeyEvent(String givenInput) throws FrameSizeOutOfBound {
+    public void registerKeyEvent(String givenInput) throws FrameSizeOutOfBound, IOException, ClassNotFoundException {
         gameController.actionOnKeyEvent(givenInput);
     }
 
@@ -82,10 +82,10 @@ public class GameEngine {
     }
 
     public void playerMoveRight() {
-        GameObject player = gameState.getGameObjct(gameState.getPlayerId());
+        Player player = (Player)gameState.getGameObjct(gameState.getPlayerId());
         int positionX  = player.getAppearance().getPositionX();
-        if(positionX > 0 && positionX < Config.MAX_WIDTH - 1) {
-            player.getAppearance().setPositionX(positionX + 1);
+        if(positionX > 0 && positionX < Config.MAX_WIDTH - player.getSpeed()) {
+            player.getAppearance().setPositionX(positionX + player.getSpeed());
         }
         try {
             this.generateFrame();
@@ -95,10 +95,10 @@ public class GameEngine {
     }
 
     public void playerMoveLeft() {
-        GameObject player = gameState.getGameObjct(gameState.getPlayerId());
+        Player player = (Player)gameState.getGameObjct(gameState.getPlayerId());
         int positionX  = player.getAppearance().getPositionX();
-        if(positionX > 0 && positionX < Config.MAX_WIDTH - 1) {
-            player.getAppearance().setPositionX(positionX - 1);
+        if(positionX > 0 && positionX < Config.MAX_WIDTH - player.getSpeed()) {
+            player.getAppearance().setPositionX(positionX - player.getSpeed());
         }
         try {
             this.generateFrame();
@@ -108,10 +108,10 @@ public class GameEngine {
     }
 
     public void playerMoveDown() {
-        GameObject player = gameState.getGameObjct(gameState.getPlayerId());
+        Player player = (Player)gameState.getGameObjct(gameState.getPlayerId());
         int positionY  = player.getAppearance().getPositionY();
-        if(positionY > 0 && positionY < Config.MAX_HEIGHT - 1) {
-            player.getAppearance().setPositionY(positionY + 1);
+        if(positionY > 0 && positionY < Config.MAX_HEIGHT - player.getSpeed()) {
+            player.getAppearance().setPositionY(positionY + player.getSpeed());
         }
         try {
             this.generateFrame();
@@ -121,10 +121,10 @@ public class GameEngine {
     }
 
     public void playerMoveUp() {
-        GameObject player = gameState.getGameObjct(gameState.getPlayerId());
+        Player player = (Player)gameState.getGameObjct(gameState.getPlayerId());
         int positionY  = player.getAppearance().getPositionY();
-        if(positionY > 0 && positionY < Config.MAX_HEIGHT - 1) {
-            player.getAppearance().setPositionY(positionY - 1);
+        if(positionY > 0 && positionY < Config.MAX_HEIGHT - player.getSpeed()) {
+            player.getAppearance().setPositionY(positionY - player.getSpeed());
         }
         try {
             this.generateFrame();
@@ -156,14 +156,20 @@ public class GameEngine {
         menuRenderer.showPauseMenu(gameStateRenderer.getGameFrame(gameState));
     }
 
-    public void loadSave() throws IOException, FrameSizeOutOfBound, ClassNotFoundException {
+    public void gameLoad() throws IOException, FrameSizeOutOfBound, ClassNotFoundException {
         String filename = "gameState.sav";
-        FileInputStream file = new FileInputStream(filename);
-        ObjectInputStream in = new ObjectInputStream(file);
-        gameState = (GameState)in.readObject();
-        in.close();
-        file.close();
-        gameStateRenderer.generateFrame(gameState);
+        File saveFile = new File(filename);
+        if(saveFile.exists()) {
+            FileInputStream file = new FileInputStream(saveFile);
+            ObjectInputStream in = new ObjectInputStream(file);
+            gameState = (GameState) in.readObject();
+            in.close();
+            file.close();
+            this.CURRENT_STATE = State.GAME_PLAY;
+            gameStateRenderer.generateFrame(gameState);
+        }else{
+            menuRenderer.showNoSaveFileMenu();
+        }
     }
 
     public void gameReset() throws FrameSizeOutOfBound {

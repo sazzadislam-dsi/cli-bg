@@ -11,7 +11,6 @@ import java.util.UUID;
  * Created by nazmul on 9/28/2018.
  */
 public abstract class GameObject implements Serializable {
-
     private String id;
     private Appearance appearance;
     private Attribute attribute;

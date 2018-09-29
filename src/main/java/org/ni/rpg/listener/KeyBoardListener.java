@@ -3,6 +3,7 @@ package org.ni.rpg.listener;
 import org.ni.rpg.exception.FrameSizeOutOfBound;
 import org.ni.rpg.singleton.GameEngine;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 /**
@@ -23,7 +24,7 @@ public class KeyBoardListener {
         this.gameEngine = gameEngine;
     }
 
-    public void listen() throws FrameSizeOutOfBound {
+    public void listen() throws FrameSizeOutOfBound, IOException, ClassNotFoundException {
         while(true) {
             Scanner input=new Scanner(System.in);
             String givenInput = input.nextLine();

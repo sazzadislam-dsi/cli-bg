@@ -15,6 +15,7 @@ import java.util.concurrent.PriorityBlockingQueue;
  * Created by nazmul on 9/29/2018.
  */
 public class GameState extends GameObject {
+    private static final long serialversionUID = 538219554L;
 
     String playerId;
 
