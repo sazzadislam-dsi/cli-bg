@@ -92,7 +92,23 @@ public class GameEngine {
 
     }
 
-    public void gamePause() {
+    public void gamePause() throws FrameSizeOutOfBound {
+        this.CURRENT_STATE = State.PAUSE;
+        menuRenderer.showPauseMenu(gameStateRenderer.getGameFrame(gameState));
+    }
 
+    public void gameResume() throws FrameSizeOutOfBound {
+        this.CURRENT_STATE = State.GAME_PLAY;
+        gameStateRenderer.generateFrame(gameState);
+    }
+
+    public void gameSave() {
+
+    }
+
+    public void gameReset() throws FrameSizeOutOfBound {
+        GameState gameState=null;
+        CURRENT_STATE = State.MAIN_MENU;
+        menuRenderer.showStartMenu();
     }
 }

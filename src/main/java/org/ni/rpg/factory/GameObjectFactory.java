@@ -27,14 +27,14 @@ public class GameObjectFactory implements GameObjectAbstractFactory {
     @Override
     public GameState createGameMap(String name) {
         Attribute attribute = new Attribute(false, true, false, false, false, false);
-        Dimension dimension = new Dimension(Config.MAX_HEIGHT,Config.MAX_WIDTH);
-        Character[][] content = Commons.generateGameStateContent(Config.MAX_HEIGHT,Config.MAX_WIDTH);
+        Dimension dimension = new Dimension(Config.MAX_HEIGHT-2,Config.MAX_WIDTH-2);
+        Character[][] content = Commons.generateGameStateContent(Config.MAX_HEIGHT-2,Config.MAX_WIDTH-2);
         Appearance appearance = new Appearance(0, 0, dimension, content, "", true);
         GameState gameState = new GameState(appearance, attribute);
 
         Random rand = new Random();
-        int positionX = rand.nextInt((Config.MAX_WIDTH - 1) + 1) + 1;
-        int positionY = rand.nextInt((Config.MAX_HEIGHT - 1) + 1) + 1;
+        int positionX = rand.nextInt((Config.MAX_WIDTH-3 - 1) + 1);
+        int positionY = rand.nextInt((Config.MAX_HEIGHT-3 - 1) + 1);
         Character[][] playerContent = Constants.PLAYER_CHAR;
         String color = "";
         double attack = Config.PLAYER_ATTACK;
@@ -48,8 +48,8 @@ public class GameObjectFactory implements GameObjectAbstractFactory {
         gameState.addGameObject(player);
         gameState.setPlayerId(player.getId());
         for(int i=0; i < Config.AI_PLAYER; i++){
-            positionX = rand.nextInt((Config.MAX_WIDTH - 1) + 1) + 1;
-            positionY = rand.nextInt((Config.MAX_HEIGHT - 1) + 1) + 1;
+            positionX = rand.nextInt((Config.MAX_WIDTH-3 - 1) + 1) ;
+            positionY = rand.nextInt((Config.MAX_HEIGHT-3 - 1) + 1) ;
             playerContent = Constants.ENEMY_CHAR;
             attack = Config.AI_PLAYER_ATTACK;
             range = Config.AI_PLAYER_RANGE;

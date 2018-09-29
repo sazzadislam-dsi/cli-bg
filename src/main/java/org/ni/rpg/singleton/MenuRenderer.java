@@ -80,14 +80,30 @@ public class MenuRenderer {
 
     public void showPlayPauseMenu(String name) throws FrameSizeOutOfBound {
         Frame mainFrame = new Frame(Config.MAX_WIDTH,Config.MAX_HEIGHT);
-        Frame welcomeMessage = new Frame("Hope you are enjoying.");
-        welcomeMessage.drawBorder();
+        Frame message = new Frame("Hope you are enjoying.");
+        message.drawBorder();
         Frame instructionFrame = new Frame(20,20);
         Frame pressInstruction1 = new Frame("Press 1 to Resume");
         Frame pressInstruction2 = new Frame("Press 2 to main menu");
         Frame pressInstruction3 = new Frame("Press 3 to Exit");
         instructionFrame.drawMiddle(Stream.of(pressInstruction1,pressInstruction2,pressInstruction3).toArray(Frame[]::new));
-        mainFrame.drawMiddle(Stream.of(welcomeMessage,instructionFrame).toArray(Frame[]::new));
+        instructionFrame.drawBorder();
+        mainFrame.drawMiddle(Stream.of(message,instructionFrame).toArray(Frame[]::new));
+        System.out.println(mainFrame.getFrameForPrint());
+    }
+
+    public void showPauseMenu(Character[][] content) throws FrameSizeOutOfBound {
+        Frame mainFrame = new Frame(Config.MAX_WIDTH,Config.MAX_HEIGHT);
+        mainFrame.drawMiddle(content);
+        mainFrame.drawBorder();
+        Frame message = new Frame("Want to save the game.");
+        message.drawBorder();
+        Frame instructionFrame = new Frame(23,20);
+        Frame pressInstruction1 = new Frame("Press 1 to Return");
+        Frame pressInstruction2 = new Frame("Press 2 to Save");
+        Frame pressInstruction3 = new Frame("Press 3 to Main menu");
+        instructionFrame.drawMiddle(Stream.of(pressInstruction1,pressInstruction2,pressInstruction3).toArray(Frame[]::new));
+        mainFrame.drawMiddle(Stream.of(message,instructionFrame).toArray(Frame[]::new));
         System.out.println(mainFrame.getFrameForPrint());
     }
 }

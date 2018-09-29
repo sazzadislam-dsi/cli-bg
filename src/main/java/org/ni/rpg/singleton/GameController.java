@@ -17,6 +17,7 @@ public class GameController {
     private static final String LEFT="a";
     private static final String RIGHT="d";
     private static final String DOWN="s";
+    private static final String HELP="h";
 
     public synchronized static GameController getInstance(GameEngine gameEngine) {
         if(singleton == null) singleton = new GameController(gameEngine);
@@ -55,8 +56,24 @@ public class GameController {
                 gameEngine.playerMoveLeft();
             }else if(givenInput.equals(RIGHT)){
                 gameEngine.playerMoveRight();
+            }else if(givenInput.equals(ONE)){
+                gameEngine.generateFrame();
+            }else if(givenInput.equals(TWO)){
+                gameEngine.gameSave();
+            }else if(givenInput.equals(THREE)){
+                gameEngine.gameReset();
             }else{
                 gameEngine.generateFrame();
+            }
+        }else if(gameEngine.getCURRENT_STATE().equals(State.PAUSE)) {
+            if(givenInput.equals(ONE)){
+                gameEngine.gameResume();
+            }else if(givenInput.equals(TWO)){
+                gameEngine.playerMoveRight();
+            }else if(givenInput.equals(THREE)){
+                gameEngine.playerMoveRight();
+            }else{
+                gameEngine.gamePause();
             }
         }
     }

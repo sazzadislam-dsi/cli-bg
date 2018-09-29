@@ -19,8 +19,11 @@ public class GameStateRenderer {
     public void generateFrame(GameState gameState) throws FrameSizeOutOfBound {
         Character[][] characters = gameState.draw(gameState.getAppearance().getContent());
         Frame frame = new Frame();
-        frame.drawAtPosition(0,0,characters);
+        frame.drawAtPosition(1,1,characters);
         frame.drawBorder();
         System.out.println(frame.getFrameForPrint());
+    }
+    public Character[][] getGameFrame(GameState gameState) throws FrameSizeOutOfBound {
+        return gameState.draw(gameState.getAppearance().getContent());
     }
 }
