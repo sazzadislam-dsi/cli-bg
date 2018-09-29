@@ -12,14 +12,14 @@ import java.util.Random;
 
 public class GameObjectFactory implements GameObjectAbstractFactory {
     @Override
-    public Player createPlayer(int positionX, int positionY, Character[][] content, String color, double attack, int range, int protection, String name, String description, double health, char direction) {
+    public Player createPlayer(int positionX, int positionY, Character[][] content, String color, double attack, int range, int protection, String name, String description, double health, char direction,int speed) {
         Attribute attribute = new Attribute(true, false, true, true, false, true);
         Dimension dimension = Commons.calculateDimension(content);
         Appearance appearance = new Appearance(positionX, positionY, dimension, content, color, true);
         DrawStrategy drawStrategy = new GameObjectDrawStrategy();
         Weapon weapon = new Weapon(appearance, attribute, attack, range, drawStrategy);
         Shield shield = new Shield(appearance, attribute, protection, drawStrategy);
-        return new Player(appearance, attribute, name, description, health, direction, weapon, shield, drawStrategy);
+        return new Player(appearance, attribute, name, description, health, direction, weapon, shield, drawStrategy,speed);
     }
 
 
@@ -37,13 +37,14 @@ public class GameObjectFactory implements GameObjectAbstractFactory {
         int positionY = rand.nextInt((Config.MAX_HEIGHT - 1) + 1) + 1;
         Character[][] playerContent = Constants.PLAYER_CHAR;
         String color = "";
-        double attack = Config.AI_PLAYER_ATTACK;
-        int range = Config.AI_PLAYER_RANGE;
+        double attack = Config.PLAYER_ATTACK;
+        int range = Config.PLAYER_RANGE;
+        int speed = Config.PLAYER_SPEED;
         int protection = 0;
         String description = "";
         double health = Config.PLAYER_HEALTH;
         char direction = 'u';
-        Player player = createPlayer(positionX,positionY,playerContent,color,attack,range,protection,name,description,health,direction);
+        Player player = createPlayer(positionX,positionY,playerContent,color,attack,range,protection,name,description,health,direction,speed);
         gameState.addGameObject(player);
         gameState.setPlayerId(player.getId());
         for(int i=0; i < Config.AI_PLAYER; i++){
@@ -52,9 +53,10 @@ public class GameObjectFactory implements GameObjectAbstractFactory {
             playerContent = Constants.ENEMY_CHAR;
             attack = Config.AI_PLAYER_ATTACK;
             range = Config.AI_PLAYER_RANGE;
+            speed = Config.AI_PLAYER_SPEED;
             String aiPlayerName = "Enemy-"+1;
             health = Config.AI_PLAYER_HEALTH;
-            Player aiPlayer = createPlayer(positionX,positionY,playerContent,color,attack,range,protection,aiPlayerName,description,health,direction);
+            Player aiPlayer = createPlayer(positionX,positionY,playerContent,color,attack,range,protection,aiPlayerName,description,health,direction,speed);
             gameState.addGameObject(aiPlayer);
         }
         return gameState;

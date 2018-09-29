@@ -20,6 +20,7 @@ public class GameStateRenderer {
         Character[][] characters = gameState.draw(gameState.getAppearance().getContent());
         Frame frame = new Frame();
         frame.drawAtPosition(0,0,characters);
+        frame.drawBorder();
         System.out.println(frame.getFrameForPrint());
     }
 }

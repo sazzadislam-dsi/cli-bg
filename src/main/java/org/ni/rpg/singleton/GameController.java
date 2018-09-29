@@ -45,7 +45,7 @@ public class GameController {
                 gameEngine.createGameState(givenInput);
             }
         }else if(gameEngine.getCURRENT_STATE().equals(State.GAME_PLAY)) {
-            /*if(givenInput.equals(THREE)){
+            if(givenInput.equals(THREE)){
                 gameEngine.gamePause();
             }else if(givenInput.equals(UP)){
                 gameEngine.playerMoveUp();
@@ -57,7 +57,7 @@ public class GameController {
                 gameEngine.playerMoveRight();
             }else{
                 gameEngine.generateFrame();
-            }*/
+            }
         }
     }
 

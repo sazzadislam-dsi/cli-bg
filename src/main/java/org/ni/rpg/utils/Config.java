@@ -13,5 +13,7 @@ public class Config {
     public final static double PLAYER_ATTACK = 10.0;
     public final static int AI_PLAYER_RANGE = 4;
     public final static int PLAYER_RANGE = 3;
+    public final static int AI_PLAYER_SPEED = 2;
+    public final static int PLAYER_SPEED = 1;
 
 }

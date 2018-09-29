@@ -12,6 +12,7 @@ public class Main {
         try {
             GameEngine.getInstance().init();
         }catch (Exception ex){
+            ex.printStackTrace();
             System.exit(1);
         }
     }

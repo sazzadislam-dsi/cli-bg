@@ -75,4 +75,24 @@ public class GameEngine {
         menuRenderer.showThanksMenu();
         System.exit(0);
     }
+
+    public void playerMoveRight() {
+
+    }
+
+    public void playerMoveLeft() {
+
+    }
+
+    public void playerMoveDown() {
+
+    }
+
+    public void playerMoveUp() {
+
+    }
+
+    public void gamePause() {
+
+    }
 }

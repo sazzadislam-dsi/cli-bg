@@ -16,13 +16,14 @@ public class Player extends GameObject {
     private Weapon weapon;
     private Shield shield;
     private DrawStrategy drawStrategy;
+    private int speed;
 
     private String UP;
     private String LEFT;
     private String RIGHT;
     private String DOWN;
 
-    public Player(Appearance appearance, Attribute attribute, String name, String description, double health, char direction, Weapon weapon, Shield shield, DrawStrategy drawStrategy) {
+    public Player(Appearance appearance, Attribute attribute, String name, String description, double health, char direction, Weapon weapon, Shield shield, DrawStrategy drawStrategy,int speed) {
         super(appearance, attribute);
         this.name = name;
         this.description = description;
@@ -31,15 +32,11 @@ public class Player extends GameObject {
         this.weapon = weapon;
         this.shield = shield;
         this.drawStrategy = drawStrategy;
+        this.speed = speed;
     }
 
     public Character[][] draw(Character[][] contents) throws FrameSizeOutOfBound {
-        try {
-            return drawStrategy.draw(contents, getAppearance(), getAttribute());
-        }catch (Exception ex){
-            ex.printStackTrace();
-        }
-        return null;
+        return drawStrategy.draw(contents, getAppearance(), getAttribute());
     }
 
     public String getName() {
