@@ -1,11 +1,14 @@
 package org.ni.rpg.singleton;
 
+import org.ni.rpg.composite.GameObject;
 import org.ni.rpg.entity.GameState;
+import org.ni.rpg.entity.Player;
 import org.ni.rpg.enums.State;
 import org.ni.rpg.exception.FrameSizeOutOfBound;
 import org.ni.rpg.factory.GameObjectAbstractFactory;
 import org.ni.rpg.factory.GameObjectFactory;
 import org.ni.rpg.listener.KeyBoardListener;
+import org.ni.rpg.utils.Config;
 
 /**
  * Created by nazmul on 9/29/2018.
@@ -77,19 +80,55 @@ public class GameEngine {
     }
 
     public void playerMoveRight() {
-
+        GameObject player = gameState.getGameObjct(gameState.getPlayerId());
+        int positionX  = player.getAppearance().getPositionX();
+        if(positionX > 0 && positionX < Config.MAX_WIDTH - 1) {
+            player.getAppearance().setPositionX(positionX + 1);
+        }
+        try {
+            this.generateFrame();
+        } catch (FrameSizeOutOfBound frameSizeOutOfBound) {
+            frameSizeOutOfBound.printStackTrace();
+        }
     }
 
     public void playerMoveLeft() {
-
+        GameObject player = gameState.getGameObjct(gameState.getPlayerId());
+        int positionX  = player.getAppearance().getPositionX();
+        if(positionX > 0 && positionX < Config.MAX_WIDTH - 1) {
+            player.getAppearance().setPositionX(positionX - 1);
+        }
+        try {
+            this.generateFrame();
+        } catch (FrameSizeOutOfBound frameSizeOutOfBound) {
+            frameSizeOutOfBound.printStackTrace();
+        }
     }
 
     public void playerMoveDown() {
-
+        GameObject player = gameState.getGameObjct(gameState.getPlayerId());
+        int positionY  = player.getAppearance().getPositionY();
+        if(positionY > 0 && positionY < Config.MAX_HEIGHT - 1) {
+            player.getAppearance().setPositionY(positionY + 1);
+        }
+        try {
+            this.generateFrame();
+        } catch (FrameSizeOutOfBound frameSizeOutOfBound) {
+            frameSizeOutOfBound.printStackTrace();
+        }
     }
 
     public void playerMoveUp() {
-
+        GameObject player = gameState.getGameObjct(gameState.getPlayerId());
+        int positionY  = player.getAppearance().getPositionY();
+        if(positionY > 0 && positionY < Config.MAX_HEIGHT - 1) {
+            player.getAppearance().setPositionY(positionY - 1);
+        }
+        try {
+            this.generateFrame();
+        } catch (FrameSizeOutOfBound frameSizeOutOfBound) {
+            frameSizeOutOfBound.printStackTrace();
+        }
     }
 
     public void gamePause() throws FrameSizeOutOfBound {
