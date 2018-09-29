@@ -138,7 +138,7 @@ public class Frame {
     public void drawAtPosition(int positionX, int positionY, Character[][] characters) throws FrameSizeOutOfBound {
         int startHeight = positionY;
         Dimension dimension = Commons.calculateDimension(characters);
-        if(positionX < 0 || positionY < 0 || positionY + dimension.getHeight() > HEIGHT || ( characters.length > 0 && dimension.getWidth() + positionX > WIDTH) ){
+        if(positionX < 0 || positionY < 0 || positionY + dimension.getHeight() > HEIGHT || ( dimension.getWidth() + positionX > WIDTH) ){
             throw new FrameSizeOutOfBound();
         }
         for(int i = 0; i < characters.length; i++){

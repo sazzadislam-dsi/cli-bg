@@ -2,19 +2,21 @@ package org.ni.rpg.composite;
 
 import org.ni.rpg.entity.Appearance;
 import org.ni.rpg.entity.Attribute;
+import org.ni.rpg.exception.FrameSizeOutOfBound;
 
+import java.io.Serializable;
 import java.util.UUID;
 
 /**
  * Created by nazmul on 9/28/2018.
  */
-public abstract class GameObject {
+public abstract class GameObject implements Serializable {
 
     private String id;
     private Appearance appearance;
     private Attribute attribute;
 
-    public abstract Character[][] draw(Character[][] characters);
+    public abstract Character[][] draw(Character[][] characters) throws FrameSizeOutOfBound;
 
     public GameObject(Appearance appearance, Attribute attribute) {
         id = UUID.randomUUID().toString();

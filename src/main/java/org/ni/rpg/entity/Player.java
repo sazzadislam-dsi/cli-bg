@@ -1,6 +1,7 @@
 package org.ni.rpg.entity;
 
 import org.ni.rpg.composite.GameObject;
+import org.ni.rpg.exception.FrameSizeOutOfBound;
 import org.ni.rpg.strategy.DrawStrategy;
 
 /**
@@ -16,6 +17,11 @@ public class Player extends GameObject {
     private Shield shield;
     private DrawStrategy drawStrategy;
 
+    private String UP;
+    private String LEFT;
+    private String RIGHT;
+    private String DOWN;
+
     public Player(Appearance appearance, Attribute attribute, String name, String description, double health, char direction, Weapon weapon, Shield shield, DrawStrategy drawStrategy) {
         super(appearance, attribute);
         this.name = name;
@@ -27,8 +33,13 @@ public class Player extends GameObject {
         this.drawStrategy = drawStrategy;
     }
 
-    public Character[][] draw(Character[][] characters) {
-        return drawStrategy.draw(characters,getAppearance(),getAttribute());
+    public Character[][] draw(Character[][] contents) throws FrameSizeOutOfBound {
+        try {
+            return drawStrategy.draw(contents, getAppearance(), getAttribute());
+        }catch (Exception ex){
+            ex.printStackTrace();
+        }
+        return null;
     }
 
     public String getName() {

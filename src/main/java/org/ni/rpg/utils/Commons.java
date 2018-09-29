@@ -17,4 +17,13 @@ public class Commons {
         }
         return new Dimension(height,width);
     }
+    public static Character[][] generateGameStateContent(int height, int width) {
+        Character[][] content = new Character[height][width];
+        for(int i=0;i<height;i++){
+            for(int j=0;j<width;j++){
+                content[i][j] = ' ';
+            }
+        }
+        return content;
+    }
 }

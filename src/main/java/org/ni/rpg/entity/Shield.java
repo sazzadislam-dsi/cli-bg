@@ -1,6 +1,7 @@
 package org.ni.rpg.entity;
 
 import org.ni.rpg.composite.GameObject;
+import org.ni.rpg.exception.FrameSizeOutOfBound;
 import org.ni.rpg.strategy.DrawStrategy;
 
 /**
@@ -17,7 +18,7 @@ public class Shield extends GameObject {
         this.drawStrategy = drawStrategy;
     }
 
-    public Character[][] draw(Character[][] characters) {
+    public Character[][] draw(Character[][] characters) throws FrameSizeOutOfBound {
         return drawStrategy.draw(characters,getAppearance(),getAttribute());
     }
 

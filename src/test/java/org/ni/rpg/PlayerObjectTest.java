@@ -15,7 +15,7 @@ public class PlayerObjectTest {
     public void testPlayerCreation() {
         Character[][] ch = { {'x'} };
         GameObjectAbstractFactory factory = new GameObjectFactory();
-        Player player = factory.createPlayer(true, false, true, true, false, true,0, 0, ch, "red", true, 50, 3,  50,"Nazmul", "wolverine", 100, 'r' );
+        Player player = factory.createPlayer(0, 0, ch, "red", 50, 3,  50,"Nazmul", "wolverine", 100, 'r' );
         System.out.println(player);
         assertNotNull(player);
         assertEquals(player.getName(), "Nazmul");
