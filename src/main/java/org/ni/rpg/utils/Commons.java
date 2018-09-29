@@ -6,6 +6,16 @@ import org.ni.rpg.entity.Dimension;
  * Created by nazmul on 9/29/2018.
  */
 public class Commons {
+    private static String playerName = "";
+
+    public static String getPlayerName() {
+        return playerName;
+    }
+
+    public static void setPlayerName(String name) {
+        playerName = playerName;
+    }
+
     public static Dimension calculateDimension(Character[][] content){
         int height = 0;
         int width = 0;

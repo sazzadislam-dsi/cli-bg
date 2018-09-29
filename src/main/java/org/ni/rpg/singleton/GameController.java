@@ -60,8 +60,6 @@ public class GameController {
                 gameEngine.generateFrame();
             }else if(givenInput.equals(TWO)){
                 gameEngine.gameSave();
-            }else if(givenInput.equals(THREE)){
-                gameEngine.gameReset();
             }else{
                 gameEngine.generateFrame();
             }
@@ -69,9 +67,9 @@ public class GameController {
             if(givenInput.equals(ONE)){
                 gameEngine.gameResume();
             }else if(givenInput.equals(TWO)){
-                gameEngine.playerMoveRight();
+                gameEngine.gameSave();
             }else if(givenInput.equals(THREE)){
-                gameEngine.playerMoveRight();
+                gameEngine.gameReset();
             }else{
                 gameEngine.gamePause();
             }

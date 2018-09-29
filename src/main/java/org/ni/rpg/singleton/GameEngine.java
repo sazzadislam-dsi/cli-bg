@@ -10,6 +10,8 @@ import org.ni.rpg.factory.GameObjectFactory;
 import org.ni.rpg.listener.KeyBoardListener;
 import org.ni.rpg.utils.Config;
 
+import java.io.*;
+
 /**
  * Created by nazmul on 9/29/2018.
  */
@@ -141,8 +143,27 @@ public class GameEngine {
         gameStateRenderer.generateFrame(gameState);
     }
 
-    public void gameSave() {
+    public void gameSave() throws IOException, FrameSizeOutOfBound {
+        String filename = "gameState.sav";
+        FileOutputStream file = new FileOutputStream
+                (filename);
+        ObjectOutputStream out = new ObjectOutputStream
+                (file);
+        out.writeObject(gameState);
+        out.close();
+        file.close();
 
+        menuRenderer.showPauseMenu(gameStateRenderer.getGameFrame(gameState));
+    }
+
+    public void loadSave() throws IOException, FrameSizeOutOfBound, ClassNotFoundException {
+        String filename = "gameState.sav";
+        FileInputStream file = new FileInputStream(filename);
+        ObjectInputStream in = new ObjectInputStream(file);
+        gameState = (GameState)in.readObject();
+        in.close();
+        file.close();
+        gameStateRenderer.generateFrame(gameState);
     }
 
     public void gameReset() throws FrameSizeOutOfBound {
