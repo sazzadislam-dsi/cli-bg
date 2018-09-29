@@ -27,6 +27,15 @@ public class Frame {
         clean();
     }
 
+    public Frame(String message) throws FrameSizeOutOfBound {
+        char[] stringToCharArray = message.toCharArray();
+        WIDTH = stringToCharArray.length+2;
+        HEIGHT = 1+2;
+        content = new Character[HEIGHT][WIDTH];
+        clean();
+        drawMiddle(message);
+    }
+
     public int getWIDTH() {
         return WIDTH;
     }
@@ -60,7 +69,7 @@ public class Frame {
     }
 
     public void drawBorder() {
-        drawBorder('_', '|');
+        drawBorder('.', '.');
     }
 
     public void drawBorder(char sideBorder, char uperBorder) {
