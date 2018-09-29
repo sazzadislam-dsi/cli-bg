@@ -3,6 +3,8 @@ package org.ni.rpg.singleton;
 import org.ni.rpg.enums.State;
 import org.ni.rpg.exception.FrameSizeOutOfBound;
 
+import java.io.IOException;
+
 /**
  * Created by nazmul on 9/29/2018.
  */
@@ -28,7 +30,7 @@ public class GameController {
         this.gameEngine = gameEngine;
     }
 
-    public void actionOnKeyEvent(String givenInput) throws FrameSizeOutOfBound {
+    public void actionOnKeyEvent(String givenInput) throws FrameSizeOutOfBound, IOException {
         if(gameEngine.getCURRENT_STATE().equals(State.MAIN_MENU)) {
             if(givenInput.equals(ONE)){
                 gameEngine.playerCreationStart();
