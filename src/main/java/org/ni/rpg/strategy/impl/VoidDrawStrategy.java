@@ -9,7 +9,7 @@ import org.ni.rpg.strategy.DrawStrategy;
  */
 public class VoidDrawStrategy implements DrawStrategy {
     @Override
-    public char[][] draw(char[][] characters, Appearance appearance, Attribute attribute) {
+    public Character[][] draw(Character[][] characters, Appearance appearance, Attribute attribute) {
         return characters;
     }
 }

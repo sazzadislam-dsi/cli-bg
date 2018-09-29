@@ -17,7 +17,7 @@ public class Shield extends GameObject {
         this.drawStrategy = drawStrategy;
     }
 
-    public char[][] draw(char[][] characters) {
+    public Character[][] draw(Character[][] characters) {
         return drawStrategy.draw(characters,getAppearance(),getAttribute());
     }
 

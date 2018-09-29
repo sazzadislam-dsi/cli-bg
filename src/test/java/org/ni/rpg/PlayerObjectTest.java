@@ -2,8 +2,8 @@ package org.ni.rpg;
 
 import org.junit.Test;
 import org.ni.rpg.entity.*;
+import org.ni.rpg.factory.GameObjectAbstractFactory;
 import org.ni.rpg.factory.GameObjectFactory;
-import org.ni.rpg.factory.PlayerFactory;
 import org.ni.rpg.strategy.DrawStrategy;
 import org.ni.rpg.strategy.impl.GameObjectDrawStrategy;
 
@@ -13,15 +13,10 @@ import static org.junit.Assert.assertNotNull;
 public class PlayerObjectTest {
     @Test()
     public void testPlayerCreation() {
-        char[][] ch = { {'-', '-'}, {'-', '-'} };
+        Character[][] ch = { {'x'} };
 
-        Attribute attribute = new Attribute(true, false, true, true, false, true);
-        Appearance appearance = new Appearance(0, 0, 4, 4, ch, "red", true);
-        DrawStrategy drawStrategy = new GameObjectDrawStrategy();
-        Weapon weapon = new Weapon(appearance, attribute, 50, 3, drawStrategy);
-        Shield shield = new Shield(appearance, attribute, 50, drawStrategy);
-
-        Player player = (Player)GameObjectFactory.createGameObject(new PlayerFactory(appearance, attribute, "Nazmul", "wolverine", 100, 'r', weapon, shield, drawStrategy));
+        GameObjectAbstractFactory factory = new GameObjectFactory();
+        Player player = factory.createPlayer(true, false, true, true, false, true,0, 0, ch, "red", true, 50, 3,  50,"Nazmul", "wolverine", 100, 'r' );
         System.out.println(player);
         assertNotNull(player);
         assertEquals(player.getName(), "Nazmul");

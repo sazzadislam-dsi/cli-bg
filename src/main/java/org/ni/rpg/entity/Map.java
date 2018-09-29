@@ -24,7 +24,7 @@ public class Map extends GameObject {
         return gameObjects.remove(gameObject);
     }
 
-    public char[][] draw(char[][] characters) {
+    public Character[][] draw(Character[][] characters) {
         for(GameObject gameObject : gameObjects)
         {
             gameObject.draw(characters);

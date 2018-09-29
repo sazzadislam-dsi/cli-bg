@@ -6,17 +6,15 @@ package org.ni.rpg.entity;
 public class Appearance {
     private int positionX;
     private int positionY;
-    private int height;
-    private int width;
-    private char[][] content;
+    private Dimension dimension;
+    private Character[][] content;
     private String color;
     private boolean visible;
 
-    public Appearance(int positionX, int positionY, int height, int width, char[][] content, String color, boolean visible) {
+    public Appearance(int positionX, int positionY, Dimension dimension, Character[][] content, String color, boolean visible) {
         this.positionX = positionX;
         this.positionY = positionY;
-        this.height = height;
-        this.width = width;
+        this.dimension = dimension;
         this.content = content;
         this.color = color;
         this.visible = visible;
@@ -38,27 +36,19 @@ public class Appearance {
         this.positionY = positionY;
     }
 
-    public int getHeight() {
-        return height;
+    public Dimension getDimension() {
+        return dimension;
     }
 
-    public void setHeight(int height) {
-        this.height = height;
+    public void setDimension(Dimension dimension) {
+        this.dimension = dimension;
     }
 
-    public int getWidth() {
-        return width;
-    }
-
-    public void setWidth(int width) {
-        this.width = width;
-    }
-
-    public char[][] getContent() {
+    public Character[][] getContent() {
         return content;
     }
 
-    public void setContent(char[][] content) {
+    public void setContent(Character[][] content) {
         this.content = content;
     }
 

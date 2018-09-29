@@ -11,7 +11,7 @@ public abstract class GameObject{
     private Appearance appearance;
     private Attribute attribute;
 
-    public abstract char[][] draw(char[][] characters);
+    public abstract Character[][] draw(Character[][] characters);
 
     public GameObject(Appearance appearance, Attribute attribute) {
         this.appearance = appearance;
