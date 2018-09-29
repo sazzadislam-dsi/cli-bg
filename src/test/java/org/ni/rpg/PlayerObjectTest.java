@@ -14,7 +14,6 @@ public class PlayerObjectTest {
     @Test()
     public void testPlayerCreation() {
         Character[][] ch = { {'x'} };
-
         GameObjectAbstractFactory factory = new GameObjectFactory();
         Player player = factory.createPlayer(true, false, true, true, false, true,0, 0, ch, "red", true, 50, 3,  50,"Nazmul", "wolverine", 100, 'r' );
         System.out.println(player);
