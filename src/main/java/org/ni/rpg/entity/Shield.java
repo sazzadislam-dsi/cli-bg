@@ -20,7 +20,7 @@ public class Shield extends GameObject {
     }
 
     public Character[][] draw(Character[][] characters) throws FrameSizeOutOfBound {
-        return drawStrategy.draw(characters,getAppearance(),getAttribute());
+        return drawStrategy.draw(characters,this);
     }
 
 }

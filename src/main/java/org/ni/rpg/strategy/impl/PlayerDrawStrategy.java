@@ -1,7 +1,6 @@
 package org.ni.rpg.strategy.impl;
 
-import org.ni.rpg.entity.Appearance;
-import org.ni.rpg.entity.Attribute;
+import org.ni.rpg.composite.GameObject;
 import org.ni.rpg.entity.Dimension;
 import org.ni.rpg.exception.FrameSizeOutOfBound;
 import org.ni.rpg.singleton.GameController;
@@ -17,36 +16,36 @@ public class PlayerDrawStrategy implements DrawStrategy,Serializable {
     private static final long serialversionUID = 538219549L;
 
     @Override
-    public Character[][] draw(Character[][] content, Appearance appearance, Attribute attribute) throws FrameSizeOutOfBound {
-        if((appearance.isVisible() || !attribute.isKilled() || (attribute.isKilled()&&!attribute.isRemoveAfterKilled())) && appearance.getDimension().getWidth() > 0 && appearance.getDimension().getHeight() > 0){
-            int startHeight = appearance.getPositionY();
+    public Character[][] draw(Character[][] content, GameObject gameObject) throws FrameSizeOutOfBound {
+        if((gameObject.getAppearance().isVisible() || !gameObject.getAttribute().isKilled() || (gameObject.getAttribute().isKilled()&&!gameObject.getAttribute().isRemoveAfterKilled())) && gameObject.getAppearance().getDimension().getWidth() > 0 && gameObject.getAppearance().getDimension().getHeight() > 0){
+            int startHeight = gameObject.getAppearance().getPositionY();
             Dimension dimension = Commons.calculateDimension(content);
-            if(appearance.getPositionX() < 0 || appearance.getPositionY() < 0 || appearance.getPositionY() + appearance.getDimension().getHeight() > dimension.getHeight() || ( appearance.getDimension().getWidth() + appearance.getPositionX() > dimension.getWidth())){
+            if(gameObject.getAppearance().getPositionX() < 0 || gameObject.getAppearance().getPositionY() < 0 || gameObject.getAppearance().getPositionY() + gameObject.getAppearance().getDimension().getHeight() > dimension.getHeight() || ( gameObject.getAppearance().getDimension().getWidth() + gameObject.getAppearance().getPositionX() > dimension.getWidth())){
                 throw new FrameSizeOutOfBound();
             }
-            for(int i = 0; i < appearance.getContent().length; i++){
-                int startWidth = appearance.getPositionX();
-                for(int j=0;j<appearance.getContent().length;j++){
-                    content[startHeight][startWidth]= appearance.getContent()[i][j];
+            for(int i = 0; i < gameObject.getAppearance().getContent().length; i++){
+                int startWidth = gameObject.getAppearance().getPositionX();
+                for(int j=0;j<gameObject.getAppearance().getContent().length;j++){
+                    content[startHeight][startWidth]= gameObject.getAppearance().getContent()[i][j];
                     startWidth++;
                 }
                 startHeight++;
             }
-            if(appearance.getDirection().equals(GameController.UP)){
-                if(appearance.getPositionY()>0){
-                    content[appearance.getPositionY()-1][appearance.getPositionX()] = '|';
+            if(gameObject.getAppearance().getDirection().equals(GameController.UP)){
+                if(gameObject.getAppearance().getPositionY()>0){
+                    content[gameObject.getAppearance().getPositionY()-1][gameObject.getAppearance().getPositionX()] = '|';
                 }
-            }else if(appearance.getDirection().equals(GameController.DOWN)){
-                if(appearance.getPositionY()+appearance.getDimension().getHeight()<dimension.getHeight()){
-                    content[appearance.getPositionY()+appearance.getDimension().getHeight()][appearance.getPositionX()+1] = '|';
+            }else if(gameObject.getAppearance().getDirection().equals(GameController.DOWN)){
+                if(gameObject.getAppearance().getPositionY()+gameObject.getAppearance().getDimension().getHeight()<dimension.getHeight()){
+                    content[gameObject.getAppearance().getPositionY()+gameObject.getAppearance().getDimension().getHeight()][gameObject.getAppearance().getPositionX()+1] = '|';
                 }
-            }else if(appearance.getDirection().equals(GameController.LEFT)){
-                if(appearance.getPositionX()>0){
-                    content[appearance.getPositionY()][appearance.getPositionX()-1] = '-';
+            }else if(gameObject.getAppearance().getDirection().equals(GameController.LEFT)){
+                if(gameObject.getAppearance().getPositionX()>0){
+                    content[gameObject.getAppearance().getPositionY()][gameObject.getAppearance().getPositionX()-1] = '-';
                 }
-            }else if(appearance.getDirection().equals(GameController.RIGHT)){
-                if(appearance.getPositionX()+appearance.getDimension().getWidth()<dimension.getWidth()){
-                    content[appearance.getPositionY()][appearance.getPositionX()+appearance.getDimension().getWidth()+1] = '-';
+            }else if(gameObject.getAppearance().getDirection().equals(GameController.RIGHT)){
+                if(gameObject.getAppearance().getPositionX()+gameObject.getAppearance().getDimension().getWidth()<dimension.getWidth()){
+                    content[gameObject.getAppearance().getPositionY()][gameObject.getAppearance().getPositionX()+gameObject.getAppearance().getDimension().getWidth()+1] = '-';
                 }
             }
         }

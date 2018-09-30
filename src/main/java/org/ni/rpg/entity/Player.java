@@ -17,6 +17,7 @@ public class Player extends GameObject {
     private Shield shield;
     private DrawStrategy drawStrategy;
     private int speed;
+    private int killed;
 
     private String UP;
     private String LEFT;
@@ -32,10 +33,11 @@ public class Player extends GameObject {
         this.shield = shield;
         this.drawStrategy = drawStrategy;
         this.speed = speed;
+        this.killed = 0;
     }
 
     public Character[][] draw(Character[][] contents) throws FrameSizeOutOfBound {
-        return drawStrategy.draw(contents, getAppearance(), getAttribute());
+        return drawStrategy.draw(contents, this);
     }
 
     public String getName() {
@@ -94,4 +96,11 @@ public class Player extends GameObject {
         this.speed = speed;
     }
 
+    public int getKilled() {
+        return killed;
+    }
+
+    public void setKilled(int killed) {
+        this.killed = killed;
+    }
 }

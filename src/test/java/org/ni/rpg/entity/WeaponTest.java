@@ -6,6 +6,7 @@ import org.junit.Test;
 import org.ni.rpg.exception.FrameSizeOutOfBound;
 import org.ni.rpg.singleton.GameController;
 import org.ni.rpg.strategy.DrawStrategy;
+import org.ni.rpg.strategy.impl.GameObjectDrawStrategy;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -22,12 +23,7 @@ public class WeaponTest {
         System.out.println("Testing starts");
 
         weapon=new Weapon(new Appearance(10, 10, new Dimension(10, 10), new Character[10][10], "RED", true, GameController.UP),
-                new Attribute(true, true, true, true, true, true),10,10, new DrawStrategy() {
-            @Override
-            public Character[][] draw(Character[][] characters, Appearance appearance, Attribute attribute) throws FrameSizeOutOfBound {
-                return new Character[0][];
-            }
-        });
+                new Attribute(true, true, true, true, true, true),10,10, new GameObjectDrawStrategy());
 
         expectedAppearance= new Appearance(10, 10, new Dimension(10, 10), new Character[10][10], "RED", true, GameController.UP);
         expectedAttribute=new Attribute(true, true, true, true, true, true);

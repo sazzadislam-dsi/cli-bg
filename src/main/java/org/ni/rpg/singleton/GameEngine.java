@@ -68,12 +68,17 @@ public class GameEngine {
 
     public void playerCreationStart() throws FrameSizeOutOfBound {
         this.CURRENT_STATE = State.PLAYER_CREATION_NAME;
-        menuRenderer.showPlayerCreationMenuName();
+        if(Commons.isEmpty(Commons.getPlayerName())){
+            menuRenderer.showPlayerCreationMenuName();
+        }else{
+            createGameState(Commons.getPlayerName());
+        }
     }
 
     public void createGameState(String name) throws FrameSizeOutOfBound {
         this.CURRENT_STATE = State.GAME_PLAY;
         gameState = factory.createGameMap(name);
+        Commons.setPlayerName(name);
         gameStateRenderer.generateFrame(gameState);
     }
 
@@ -219,7 +224,6 @@ public class GameEngine {
         out.writeObject(gameState);
         out.close();
         file.close();
-
         menuRenderer.showPauseMenu(gameStateRenderer.getGameFrame(gameState));
     }
 
@@ -233,6 +237,8 @@ public class GameEngine {
             in.close();
             file.close();
             this.CURRENT_STATE = State.GAME_PLAY;
+            Player player = (Player) gameState.getGameObjct(gameState.getPlayerId());
+            Commons.setPlayerName(player.getName());
             gameStateRenderer.generateFrame(gameState);
         }else{
             menuRenderer.showNoSaveFileMenu();
@@ -272,6 +278,11 @@ public class GameEngine {
                         showGameOverMenu();
                     }
                     killed++;
+
+                    player.setHealth(player.getHealth()+50.0);
+                    player.setKilled(player.getKilled()+1);
+                    player.getWeapon().setAttack(player.getWeapon().getAttack()+1);
+
                     aiPlayer.setHealth(0.0);
                     Dimension dimension = Commons.calculateDimension(Constants.DEAD_CHAR);
                     aiPlayer.getAppearance().setDimension(dimension);

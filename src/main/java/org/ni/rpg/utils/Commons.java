@@ -3,6 +3,8 @@ package org.ni.rpg.utils;
 import org.ni.rpg.entity.Dimension;
 import org.ni.rpg.singleton.GameController;
 
+import java.util.List;
+import java.util.Map;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
@@ -16,7 +18,7 @@ public class Commons {
     }
 
     public static void setPlayerName(String name) {
-        playerName = playerName;
+        playerName = name;
     }
 
     public static Dimension calculateDimension(Character[][] content){
@@ -56,5 +58,44 @@ public class Commons {
         }else{
             return GameController.RIGHT;
         }
+    }
+
+    public static boolean isEmpty(List list) {
+        if (list == null) {
+
+            return true;
+        }
+        if (list.size() == 0) {
+
+            return true;
+        }
+
+        return false;
+    }
+
+    public static boolean isEmpty(String string) {
+        if (string == null) {
+
+            return true;
+        }
+        if ("".equals(string)) {
+
+            return true;
+        }
+
+        return false;
+    }
+
+    public static boolean isEmpty(Map map) {
+        if (map == null) {
+
+            return true;
+        }
+        if (map.isEmpty()) {
+
+            return true;
+        }
+
+        return false;
     }
 }
