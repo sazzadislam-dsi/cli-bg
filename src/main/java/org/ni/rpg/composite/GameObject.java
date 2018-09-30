@@ -14,6 +14,7 @@ public abstract class GameObject implements Serializable {
     private String id;
     private Appearance appearance;
     private Attribute attribute;
+    private boolean statOn;
 
     public abstract Character[][] draw(Character[][] characters) throws FrameSizeOutOfBound;
 
@@ -21,6 +22,7 @@ public abstract class GameObject implements Serializable {
         id = UUID.randomUUID().toString();
         this.appearance = appearance;
         this.attribute = attribute;
+        this.statOn = false;
     }
 
     public String getId() {
@@ -45,6 +47,14 @@ public abstract class GameObject implements Serializable {
 
     public void setAttribute(Attribute attribute) {
         this.attribute = attribute;
+    }
+
+    public boolean isStatOn() {
+        return statOn;
+    }
+
+    public void setStatOn(boolean statOn) {
+        this.statOn = statOn;
     }
 
     /*@Override

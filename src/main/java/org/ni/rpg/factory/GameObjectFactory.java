@@ -33,7 +33,7 @@ public class GameObjectFactory implements GameObjectAbstractFactory {
         Appearance appearance = new Appearance(0, 0, dimension, content, "", true, "");
         GameState gameState = new GameState(appearance, attribute);
         Random rand = new Random();
-        int positionX = Commons.randInt(1,Config.MAX_WIDTH-5);
+        int positionX = Commons.randInt(1,Config.MAX_WIDTH-25);
         int positionY = Commons.randInt(1,Config.MAX_HEIGHT-5);
         Character[][] playerContent = Constants.PLAYER_CHAR;
         String color = "";
@@ -48,7 +48,7 @@ public class GameObjectFactory implements GameObjectAbstractFactory {
         gameState.addGameObject(player);
         gameState.setPlayerId(player.getId());
         for(int i=0; i < Config.AI_PLAYER; i++){
-            positionX = Commons.randInt(1,Config.MAX_WIDTH-5);
+            positionX = Commons.randInt(1,Config.MAX_WIDTH-25);
             positionY = Commons.randInt(1,Config.MAX_HEIGHT-5);
             playerContent = Constants.ENEMY_CHAR;
             attack = Config.AI_PLAYER_ATTACK;
@@ -60,6 +60,24 @@ public class GameObjectFactory implements GameObjectAbstractFactory {
             Player aiPlayer = createPlayer(positionX,positionY,playerContent,color,attack,range,protection,aiPlayerName,description,health,direction,speed);
             gameState.addGameObject(aiPlayer);
         }
+        for(int i=0; i < Config.OBSTACLE; i++){
+            positionX = Commons.randInt(1,Config.MAX_WIDTH-25);
+            positionY = Commons.randInt(1,Config.MAX_HEIGHT-5);
+            playerContent = Constants.TREE_CHAR;
+            attack = 0.0;
+            range = 0;
+            Obstacle aiPlayer = createObstacle(positionX,positionY,playerContent,color,attack,range,protection);
+            gameState.addGameObject(aiPlayer);
+        }
         return gameState;
+    }
+
+    @Override
+    public Obstacle createObstacle(int positionX, int positionY, Character[][] content, String color, double attack, int range, int protection) {
+        Attribute attribute = new Attribute(false, false, false, false, false, false);
+        Dimension dimension = Commons.calculateDimension(content);
+        Appearance appearance = new Appearance(positionX, positionY, dimension, content, color, true, "");
+        DrawStrategy drawStrategy = new GameObjectDrawStrategy();
+        return new Obstacle(appearance, attribute, drawStrategy);
     }
 }

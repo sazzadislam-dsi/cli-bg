@@ -24,15 +24,15 @@ public class PlayerDrawStrategy implements DrawStrategy,Serializable {
             if(gameObject.getAppearance().getPositionX() < 0 || gameObject.getAppearance().getPositionY() < 0 || gameObject.getAppearance().getPositionY() + gameObject.getAppearance().getDimension().getHeight() > dimension.getHeight() || ( gameObject.getAppearance().getDimension().getWidth() + gameObject.getAppearance().getPositionX() > dimension.getWidth())){
                 throw new FrameSizeOutOfBound();
             }
-            for(int i = 0; i < gameObject.getAppearance().getContent().length; i++){
+            for(int i = 0; i < gameObject.getAppearance().getDimension().getHeight(); i++){
                 int startWidth = gameObject.getAppearance().getPositionX();
-                for(int j=0;j<gameObject.getAppearance().getContent().length;j++){
+                for(int j=0;j<gameObject.getAppearance().getDimension().getWidth();j++){
                     content[startHeight][startWidth]= gameObject.getAppearance().getContent()[i][j];
                     startWidth++;
                 }
                 startHeight++;
             }
-            if(!gameObject.getAttribute().isKilled() ) {
+            if(!gameObject.getAttribute().isKilled() && gameObject.isStatOn() ) {
                 if (gameObject.getAppearance().getDirection().equals(GameController.UP)) {
                     if (gameObject.getAppearance().getPositionY() > 0) {
                         content[gameObject.getAppearance().getPositionY() - 1][gameObject.getAppearance().getPositionX()] = '|';
@@ -61,7 +61,7 @@ public class PlayerDrawStrategy implements DrawStrategy,Serializable {
     }
 
     private void helpWatermark(Character[][] content, Dimension dimension) {
-        drawText(content, 0,0 ,"Help-H", dimension.getWidth());
+        drawText(content, 0,0 ,"Help-H, Stat-S", dimension.getWidth());
     }
 
     private void getStatus(GameObject gameObject, Dimension dimension, Character[][] content){

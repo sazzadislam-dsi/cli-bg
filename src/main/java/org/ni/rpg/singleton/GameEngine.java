@@ -50,8 +50,8 @@ public class GameEngine {
         menuRenderer.showStartMenu();
     }
 
-    public void showStartMenuAnim() throws FrameSizeOutOfBound {
-        menuRenderer.showStartMenuAnim();
+    public void showStartMenuHelp() throws FrameSizeOutOfBound {
+        menuRenderer.inGameHelpMenu();
     }
 
     public void registerKeyEvent(String givenInput) throws FrameSizeOutOfBound, IOException, ClassNotFoundException {

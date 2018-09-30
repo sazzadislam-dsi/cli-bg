@@ -37,6 +37,8 @@ public class GameController {
                 gameEngine.playerCreationStart();
             }else if(givenInput.equals(TWO)){
                 gameEngine.gameLoad();
+            }else if(givenInput.equals(HELP)){
+                gameEngine.showStartMenuHelp();
             }else if(givenInput.equals(THREE)){
                 gameEngine.shutdown();
             }else{
