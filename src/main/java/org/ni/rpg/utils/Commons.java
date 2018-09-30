@@ -13,6 +13,7 @@ import java.util.concurrent.ThreadLocalRandom;
  */
 public class Commons {
     private static String playerName = "";
+    private static boolean showState = false;
 
     public static String getPlayerName() {
         return playerName;
@@ -20,6 +21,14 @@ public class Commons {
 
     public static void setPlayerName(String name) {
         playerName = name;
+    }
+
+    public static boolean isShowState() {
+        return showState;
+    }
+
+    public static void setShowState(boolean showState) {
+        Commons.showState = showState;
     }
 
     public static Dimension calculateDimension(Character[][] content){

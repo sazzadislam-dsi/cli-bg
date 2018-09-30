@@ -13,6 +13,7 @@ public class Main {
             GameEngine.getInstance().init();
         }catch (Exception ex){
             ex.printStackTrace();
+            System.out.println("Hoping, with the next update these errors will be fixed. Sorry for inconveniences. Thanks");
             System.exit(1);
         }
     }

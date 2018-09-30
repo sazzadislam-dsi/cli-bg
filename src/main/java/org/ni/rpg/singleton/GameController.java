@@ -15,6 +15,7 @@ public class GameController {
     public static final String ONE="1";
     public static final String TWO="2";
     public static final String THREE="3";
+    public static final String ZERO="0";
     public static final String UP="w";
     public static final String LEFT="a";
     public static final String RIGHT="d";
@@ -46,11 +47,27 @@ public class GameController {
             }
         }else if(gameEngine.getCURRENT_STATE().equals(State.PLAYER_CREATION_NAME)) {
             if(givenInput.equals(THREE)){
-                gameEngine.shutdown();
+                gameEngine.showStartMenu();
             }else if(givenInput.equals("")){
                 gameEngine.playerCreationStart();
             }else{
                 gameEngine.createGameState(givenInput);
+            }
+        }else if(gameEngine.getCURRENT_STATE().equals(State.WEAPON_CHOOSE)) {
+            if(givenInput.equals(ONE)){
+                gameEngine.weaponChoose(ONE);
+            }else if(givenInput.equals(TWO)){
+                gameEngine.weaponChoose(ONE);
+            }else if(givenInput.equals(THREE)){
+                gameEngine.weaponChoose(ONE);
+            }else{
+                gameEngine.showPlayerCreationMenuWeapon();
+            }
+        }else if(gameEngine.getCURRENT_STATE().equals(State.INSTRUCTION)) {
+            if(givenInput.equals(ONE)){
+                gameEngine.startGame();
+            }else{
+                gameEngine.showGameStartMenu();
             }
         }else if(gameEngine.getCURRENT_STATE().equals(State.GAME_PLAY)) {
             if(givenInput.equals(THREE)){
@@ -67,6 +84,8 @@ public class GameController {
                 gameEngine.generateFrame();
             }else if(givenInput.equals(TWO)){
                 gameEngine.gameSave();
+            }else if(givenInput.equals(ZERO)){
+                gameEngine.showStatus();
             }else if(givenInput.equals(FIRE)){
                 gameEngine.playerAction();
             }else if(givenInput.equals(HELP)){

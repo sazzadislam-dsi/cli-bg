@@ -2,6 +2,7 @@ package org.ni.rpg.singleton;
 
 import org.ni.rpg.entity.Frame;
 import org.ni.rpg.exception.FrameSizeOutOfBound;
+import org.ni.rpg.utils.Commons;
 import org.ni.rpg.utils.Config;
 
 import java.util.stream.Stream;
@@ -62,6 +63,19 @@ public class MenuRenderer {
         System.out.println(mainFrame.getFrameForPrint());
     }
 
+    public void showPlayerCreationMenuWeapon() throws FrameSizeOutOfBound {
+        Frame mainFrame = new Frame(Config.MAX_WIDTH,Config.MAX_HEIGHT);
+        Frame nameFrame = new Frame("Player Name:"+ Commons.getPlayerName());
+        Frame infoFrame = new Frame("Choose your weapon:");
+        Frame weaponFrame = new Frame(30,20);
+        Frame weaponFrame1 = new Frame("Press 1 - UZI (A-12,R-3)",true);
+        Frame weaponFrame2 = new Frame("Press 2 - AKM (A-10,R-4)",true);
+        Frame weaponFrame3 = new Frame("Press 3 - AWM (A-7,R-5)",true);
+        weaponFrame.drawMiddle(Stream.of(weaponFrame1,weaponFrame2,weaponFrame3).toArray(Frame[]::new));
+        mainFrame.drawMiddle(Stream.of(nameFrame,infoFrame,weaponFrame).toArray(Frame[]::new));
+        System.out.println(mainFrame.getFrameForPrint());
+    }
+
     public void showPlayerCreationMenuInfo(String name) throws FrameSizeOutOfBound {
         Frame mainFrame = new Frame(Config.MAX_WIDTH,Config.MAX_HEIGHT);
         Frame nameFrame = new Frame("Player Name:"+name);
@@ -111,7 +125,7 @@ public class MenuRenderer {
 
     public void showNoSaveFileMenu() throws FrameSizeOutOfBound {
         Frame mainFrame = new Frame(Config.MAX_WIDTH,Config.MAX_HEIGHT);
-        Frame message = new Frame("No save file found.");
+        Frame message = new Frame("No save file found or save file not compatible.");
         message.drawBorder();
         Frame instructionFrame = new Frame(20,20);
         Frame pressInstruction1 = new Frame("Press 1 to Start");
@@ -164,6 +178,25 @@ public class MenuRenderer {
         Frame pressInstruction1 = new Frame("Press 1 to Start");
         Frame pressInstruction3 = new Frame("Press 3 to Exit");
         instructionFrame.drawMiddle(Stream.of(pressInstruction1,pressInstruction3).toArray(Frame[]::new));
+        instructionFrame.drawBorder();
+        mainFrame.drawMiddle(Stream.of(message,instructionFrame).toArray(Frame[]::new));
+        System.out.println(mainFrame.getFrameForPrint());
+    }
+
+    public void showGameStartMenu() throws FrameSizeOutOfBound {
+        Frame mainFrame = new Frame(Config.MAX_WIDTH,Config.MAX_HEIGHT);
+        Frame message = new Frame("Instruction -");
+        message.drawBorder();
+        Frame instructionFrame = new Frame(85,20);
+        Frame pressInstruction1 = new Frame("Welcome 1st cli base battle royal game.",true);
+        Frame pressInstruction2 = new Frame("You are about to enter into the shooting area with "+Config.AI_PLAYER+" players.",true);
+        Frame pressInstruction3 = new Frame("You need to survive to win the game and kill other players.",true);
+        Frame pressInstruction4 = new Frame("Use 'w','s','a','d' to move up down left right and press 'f' to shoot other player.",true);
+        Frame pressInstruction5 = new Frame("You can pause anytime in the game and resume.",true);
+        Frame pressInstruction6 = new Frame("Please save the game if you want to play where you left off. Best of luck!",true);
+        Frame pressInstruction7 = new Frame("P - Player, E - Enemy, T - Tree, (-) Indicating yous gun point.",true);
+        Frame pressInstruction8 = new Frame("Press 1 to Continue");
+        instructionFrame.drawMiddle(Stream.of(pressInstruction1,pressInstruction2,pressInstruction3,pressInstruction4,pressInstruction5,pressInstruction6,pressInstruction7,pressInstruction8).toArray(Frame[]::new));
         instructionFrame.drawBorder();
         mainFrame.drawMiddle(Stream.of(message,instructionFrame).toArray(Frame[]::new));
         System.out.println(mainFrame.getFrameForPrint());

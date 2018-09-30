@@ -32,26 +32,25 @@ public class PlayerDrawStrategy implements DrawStrategy,Serializable {
                 }
                 startHeight++;
             }
-            if(!gameObject.getAttribute().isKilled() && gameObject.isStatOn() ) {
+            if(!gameObject.getAttribute().isKilled() ) {
                 if (gameObject.getAppearance().getDirection().equals(GameController.UP)) {
                     if (gameObject.getAppearance().getPositionY() > 0) {
                         content[gameObject.getAppearance().getPositionY() - 1][gameObject.getAppearance().getPositionX()] = '|';
                     }
-                    getStatus(gameObject, dimension, content);
                 } else if (gameObject.getAppearance().getDirection().equals(GameController.DOWN)) {
                     if (gameObject.getAppearance().getPositionY() + gameObject.getAppearance().getDimension().getHeight() < dimension.getHeight()) {
                         content[gameObject.getAppearance().getPositionY() + gameObject.getAppearance().getDimension().getHeight()][gameObject.getAppearance().getPositionX() + 1] = '|';
                     }
-                    getStatus(gameObject, dimension, content);
                 } else if (gameObject.getAppearance().getDirection().equals(GameController.LEFT)) {
                     if (gameObject.getAppearance().getPositionX() > 0) {
                         content[gameObject.getAppearance().getPositionY()][gameObject.getAppearance().getPositionX() - 1] = '-';
                     }
-                    getStatus(gameObject, dimension, content);
                 } else if (gameObject.getAppearance().getDirection().equals(GameController.RIGHT)) {
                     if (gameObject.getAppearance().getPositionX() + gameObject.getAppearance().getDimension().getWidth() < dimension.getWidth()) {
                         content[gameObject.getAppearance().getPositionY()][gameObject.getAppearance().getPositionX() + gameObject.getAppearance().getDimension().getWidth() + 1] = '-';
                     }
+                }
+                if(Commons.isShowState() ) {
                     getStatus(gameObject, dimension, content);
                 }
             }
@@ -61,7 +60,7 @@ public class PlayerDrawStrategy implements DrawStrategy,Serializable {
     }
 
     private void helpWatermark(Character[][] content, Dimension dimension) {
-        drawText(content, 0,0 ,"Help-H, Stat-S", dimension.getWidth());
+        drawText(content, 0,0 ,"Help-H, Stat-0", dimension.getWidth());
     }
 
     private void getStatus(GameObject gameObject, Dimension dimension, Character[][] content){

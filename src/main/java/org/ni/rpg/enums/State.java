@@ -6,7 +6,8 @@ package org.ni.rpg.enums;
 public enum State {
     MAIN_MENU,
     PLAYER_CREATION_NAME,
-    PLAYER_CREATION_DESC,
+    WEAPON_CHOOSE,
+    INSTRUCTION,
     GAME_PLAY,
     PAUSE,
     HELP,

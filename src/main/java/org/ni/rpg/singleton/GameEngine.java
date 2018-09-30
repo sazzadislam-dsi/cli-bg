@@ -47,6 +47,7 @@ public class GameEngine {
         keyBoardListener.listen();
     }
     public void showStartMenu() throws FrameSizeOutOfBound {
+        CURRENT_STATE = State.MAIN_MENU;
         menuRenderer.showStartMenu();
     }
 
@@ -76,9 +77,17 @@ public class GameEngine {
     }
 
     public void createGameState(String name) throws FrameSizeOutOfBound {
-        this.CURRENT_STATE = State.GAME_PLAY;
+        this.CURRENT_STATE = State.WEAPON_CHOOSE;
         gameState = factory.createGameMap(name);
         Commons.setPlayerName(name);
+        showPlayerCreationMenuWeapon();
+    }
+    public void showPlayerCreationMenuWeapon() throws FrameSizeOutOfBound {
+        menuRenderer.showPlayerCreationMenuWeapon();
+    }
+
+    public void startGame() throws FrameSizeOutOfBound {
+        this.CURRENT_STATE = State.GAME_PLAY;
         gameStateRenderer.generateFrame(gameState);
     }
 
@@ -230,17 +239,21 @@ public class GameEngine {
     public void gameLoad() throws IOException, FrameSizeOutOfBound, ClassNotFoundException {
         String filename = "gameState.sav";
         File saveFile = new File(filename);
-        if(saveFile.exists()) {
-            FileInputStream file = new FileInputStream(saveFile);
-            ObjectInputStream in = new ObjectInputStream(file);
-            gameState = (GameState) in.readObject();
-            in.close();
-            file.close();
-            this.CURRENT_STATE = State.GAME_PLAY;
-            Player player = (Player) gameState.getGameObjct(gameState.getPlayerId());
-            Commons.setPlayerName(player.getName());
-            gameStateRenderer.generateFrame(gameState);
-        }else{
+        try {
+            if (saveFile.exists()) {
+                FileInputStream file = new FileInputStream(saveFile);
+                ObjectInputStream in = new ObjectInputStream(file);
+                gameState = (GameState) in.readObject();
+                in.close();
+                file.close();
+                this.CURRENT_STATE = State.GAME_PLAY;
+                Player player = (Player) gameState.getGameObjct(gameState.getPlayerId());
+                Commons.setPlayerName(player.getName());
+                gameStateRenderer.generateFrame(gameState);
+            } else {
+                menuRenderer.showNoSaveFileMenu();
+            }
+        }catch(Exception ex){
             menuRenderer.showNoSaveFileMenu();
         }
     }
@@ -325,5 +338,31 @@ public class GameEngine {
     public void returnToGameFromHelpMenu() throws FrameSizeOutOfBound {
         this.CURRENT_STATE = State.GAME_PLAY;
         gameStateRenderer.generateFrame(gameState);
+    }
+
+    public void showStatus()throws FrameSizeOutOfBound {
+        Commons.setShowState(true);
+        gameStateRenderer.generateFrame(gameState);
+        Commons.setShowState(false);
+    }
+
+    public void weaponChoose(String choice)throws FrameSizeOutOfBound {
+        Player player = (Player)gameState.getGameObjct(gameState.getPlayerId());
+        if(choice.equals(GameController.ONE)){
+            player.getWeapon().setAttack(12);
+            player.getWeapon().setRange(3);
+        }else if(choice.equals(GameController.TWO)){
+            player.getWeapon().setAttack(10);
+            player.getWeapon().setRange(4);
+        }else if(choice.equals(GameController.THREE)){
+            player.getWeapon().setAttack(7);
+            player.getWeapon().setRange(5);
+        }
+        this.CURRENT_STATE = State.INSTRUCTION;
+        showGameStartMenu();
+
+    }
+    public void showGameStartMenu()throws FrameSizeOutOfBound {
+        menuRenderer.showGameStartMenu();
     }
 }
