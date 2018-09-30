@@ -1,4 +1,4 @@
-package org.ni.rpg;
+package org.ni.rpg.entity;
 
 import org.junit.Test;
 import org.ni.rpg.entity.Frame;
