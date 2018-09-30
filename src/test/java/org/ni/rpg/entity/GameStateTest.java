@@ -1,16 +1,12 @@
 package org.ni.rpg.entity;
 
-import org.jboss.arquillian.container.test.api.Deployment;
-import org.jboss.arquillian.junit.Arquillian;
-import org.jboss.shrinkwrap.api.ShrinkWrap;
-import org.jboss.shrinkwrap.api.asset.EmptyAsset;
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.ni.rpg.composite.GameObject;
 import org.ni.rpg.exception.FrameSizeOutOfBound;
+import org.ni.rpg.singleton.GameController;
 
 import static org.junit.Assert.*;
 
@@ -30,10 +26,10 @@ public class GameStateTest {
         System.out.println("Testing starts");
         playerId="Nazmul";
         gameState=new GameState(new Appearance(10,10,new Dimension(10,10),
-                new Character[10][10],"RED",true),new Attribute(true,true,true,true,true,true));
+                new Character[10][10],"RED",true, GameController.UP),new Attribute(true,true,true,true,true,true));
 
         gameState.setPlayerId(playerId);
-        gameObject=new GameObject(new Appearance(10,20,new Dimension(10,20),new Character[10][10],"RED",true),
+        gameObject=new GameObject(new Appearance(10,20,new Dimension(10,20),new Character[10][10],"RED",true, GameController.UP),
                 new Attribute(true,true,true,true,true,true)) {
             @Override
             public Character[][] draw(Character[][] characters) throws FrameSizeOutOfBound {
@@ -43,7 +39,7 @@ public class GameStateTest {
         gameObject.setId(playerId);
         gameState.addGameObject(gameObject);
 
-        expectedGameObject=new GameObject(new Appearance(10,20,new Dimension(10,20),new Character[10][10],"RED",true),
+        expectedGameObject=new GameObject(new Appearance(10,20,new Dimension(10,20),new Character[10][10],"RED",true, GameController.UP),
                 new Attribute(true,true,true,true,true,true)) {
             @Override
             public Character[][] draw(Character[][] characters) throws FrameSizeOutOfBound {

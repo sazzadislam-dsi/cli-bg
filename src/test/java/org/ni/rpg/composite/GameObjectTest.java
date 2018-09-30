@@ -10,6 +10,7 @@ import org.ni.rpg.entity.Attribute;
 import org.ni.rpg.entity.Dimension;
 import org.ni.rpg.entity.GameState;
 import org.ni.rpg.exception.FrameSizeOutOfBound;
+import org.ni.rpg.singleton.GameController;
 
 import static org.junit.Assert.*;
 
@@ -28,7 +29,7 @@ public class GameObjectTest {
     public static void initTest(){
         System.out.println("Testing starts");
         id="Nazmul";
-        appearance=new Appearance(10,20,new Dimension(10,20),new Character[10][10],"RED",true);
+        appearance=new Appearance(10,20,new Dimension(10,20),new Character[10][10],"RED",true, GameController.UP);
         attribute=new Attribute(true,true,true,true,true,true);
         gameObject=new GameObject(appearance,attribute) {
             @Override
@@ -38,7 +39,7 @@ public class GameObjectTest {
         };
         gameObject.setId(id);
 
-        expectedPppearance=new Appearance(10,20,new Dimension(10,20),new Character[10][10],"RED",true);
+        expectedPppearance=new Appearance(10,20,new Dimension(10,20),new Character[10][10],"RED",true, GameController.UP);
         expectedAttribute=new Attribute(true,true,true,true,true,true);
     }
     @Test
