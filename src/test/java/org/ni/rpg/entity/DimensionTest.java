@@ -15,8 +15,8 @@ public class DimensionTest {
     private static Dimension dimension;
 
     @BeforeClass
-    public static void initDimensionTest(){
-        System.out.println("Testing DimensionTest starts");
+    public static void initTest(){
+        System.out.println("Testing starts");
         height=10;
         width=20;
         dimension=new Dimension(height,width);
@@ -30,6 +30,6 @@ public class DimensionTest {
     }
     @AfterClass
     public static void afterTesting(){
-        System.out.println("Testing DimensionTest ends");
+        System.out.println("Testing ends");
     }
 }

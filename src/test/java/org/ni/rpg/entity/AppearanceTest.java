@@ -28,8 +28,8 @@ public class AppearanceTest {
     private boolean expectedVisible=true;
 
     @BeforeClass
-    public static void initDimensionTest(){
-        System.out.println("Testing AppearanceTest starts");
+    public static void initTest(){
+        System.out.println("Testing starts");
         positionX=10;
         positionY=20;
         dimension=new Dimension(10,20);
@@ -48,10 +48,10 @@ public class AppearanceTest {
         assertEquals(expectedContent,appearance.getContent());
         assertEquals(expectedColor,appearance.getColor());
         assertEquals(expectedVisible,appearance.isVisible());
-
+        System.out.println("test1 is passed");
     }
     @AfterClass
     public static void afterTesting(){
-        System.out.println("Testing AppearanceTest Ends");
+        System.out.println("Testing Ends");
     }
 }
