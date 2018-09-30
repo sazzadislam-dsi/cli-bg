@@ -85,6 +85,10 @@ public class GameController {
         }else if(gameEngine.getCURRENT_STATE().equals(State.HELP)) {
             if(givenInput.equals(ONE)){
                 gameEngine.returnToGameFromHelpMenu();
+            }else if(givenInput.equals(TWO)){
+                gameEngine.gameSave();
+            }else if(givenInput.equals(FIRE)){
+                gameEngine.playerAction();
             }else if(givenInput.equals(HELP)){
                 gameEngine.returnToGameFromHelpMenu();
             }else{
