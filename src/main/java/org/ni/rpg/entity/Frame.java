@@ -26,11 +26,18 @@ public class Frame {
         content = new Character[HEIGHT][WIDTH];
         clean();
     }
-
     public Frame(String message) throws FrameSizeOutOfBound {
+        this(message, false);
+    }
+    public Frame(String message, Boolean small) throws FrameSizeOutOfBound {
         char[] stringToCharArray = message.toCharArray();
-        WIDTH = stringToCharArray.length+2;
-        HEIGHT = 1+2;
+        if(!small) {
+            WIDTH = stringToCharArray.length + 2;
+            HEIGHT = 1 + 2;
+        }else{
+            WIDTH = stringToCharArray.length;
+            HEIGHT = 1;
+        }
         content = new Character[HEIGHT][WIDTH];
         clean();
         drawMiddle(message);

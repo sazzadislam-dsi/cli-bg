@@ -12,14 +12,15 @@ public class GameController {
     private static GameController singleton = null;
     private GameEngine gameEngine;
 
-    private static final String ONE="1";
-    private static final String TWO="2";
-    private static final String THREE="3";
-    private static final String UP="w";
-    private static final String LEFT="a";
-    private static final String RIGHT="d";
-    private static final String DOWN="s";
-    private static final String HELP="h";
+    public static final String ONE="1";
+    public static final String TWO="2";
+    public static final String THREE="3";
+    public static final String UP="w";
+    public static final String LEFT="a";
+    public static final String RIGHT="d";
+    public static final String DOWN="s";
+    public static final String HELP="h";
+    public static final String FIRE="f";
 
     public synchronized static GameController getInstance(GameEngine gameEngine) {
         if(singleton == null) singleton = new GameController(gameEngine);
@@ -64,6 +65,10 @@ public class GameController {
                 gameEngine.generateFrame();
             }else if(givenInput.equals(TWO)){
                 gameEngine.gameSave();
+            }else if(givenInput.equals(FIRE)){
+                gameEngine.playerAction();
+            }else if(givenInput.equals(HELP)){
+                gameEngine.showHelpMenu();
             }else{
                 gameEngine.generateFrame();
             }
@@ -76,6 +81,30 @@ public class GameController {
                 gameEngine.gameReset();
             }else{
                 gameEngine.gamePause();
+            }
+        }else if(gameEngine.getCURRENT_STATE().equals(State.HELP)) {
+            if(givenInput.equals(ONE)){
+                gameEngine.returnToGameFromHelpMenu();
+            }else if(givenInput.equals(HELP)){
+                gameEngine.returnToGameFromHelpMenu();
+            }else{
+                gameEngine.showHelpMenu();
+            }
+        }else if(gameEngine.getCURRENT_STATE().equals(State.GAME_OVER)) {
+            if(givenInput.equals(ONE)){
+                gameEngine.playerCreationStart();
+            }else if(givenInput.equals(THREE)){
+                gameEngine.shutdown();
+            }else{
+                gameEngine.showGameOverMenu();
+            }
+        }else if(gameEngine.getCURRENT_STATE().equals(State.VICTORY)) {
+            if(givenInput.equals(ONE)){
+                gameEngine.playerCreationStart();
+            }else if(givenInput.equals(THREE)){
+                gameEngine.shutdown();
+            }else{
+                gameEngine.showVictoryMenu();
             }
         }
     }

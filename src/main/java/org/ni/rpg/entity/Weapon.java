@@ -25,4 +25,19 @@ public class Weapon extends GameObject {
         return drawStrategy.draw(characters,getAppearance(),getAttribute());
     }
 
+    public double getAttack() {
+        return attack;
+    }
+
+    public void setAttack(double attack) {
+        this.attack = attack;
+    }
+
+    public int getRange() {
+        return range;
+    }
+
+    public void setRange(int range) {
+        this.range = range;
+    }
 }

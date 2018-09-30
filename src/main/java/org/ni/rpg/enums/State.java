@@ -9,5 +9,7 @@ public enum State {
     PLAYER_CREATION_DESC,
     GAME_PLAY,
     PAUSE,
-    CONFIRM
+    HELP,
+    GAME_OVER,
+    VICTORY
 }

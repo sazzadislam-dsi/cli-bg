@@ -17,6 +17,7 @@ public class AppearanceTest {
     private static Character[][] content;
     private static String color;
     private static boolean visible;
+    private static String direction;
 
     private static Appearance appearance;
 
@@ -26,6 +27,7 @@ public class AppearanceTest {
     private Character[][] expectedContent=new Character[10][10];
     private String expectedColor="RED";
     private boolean expectedVisible=true;
+    private String expectedDirection="u";
 
     @BeforeClass
     public static void initDimensionTest(){
@@ -36,7 +38,8 @@ public class AppearanceTest {
         content=new Character[10][10];
         color="RED";
         visible=true;
-        appearance=new Appearance(positionX,positionY,dimension,content,color,visible);
+        direction="u";
+        appearance=new Appearance(positionX,positionY,dimension,content,color,visible,direction);
     }
     @Test
     public void test1(){
@@ -48,6 +51,7 @@ public class AppearanceTest {
         assertEquals(expectedContent,appearance.getContent());
         assertEquals(expectedColor,appearance.getColor());
         assertEquals(expectedVisible,appearance.isVisible());
+        assertEquals(expectedDirection,appearance.getDirection());
 
     }
     @AfterClass

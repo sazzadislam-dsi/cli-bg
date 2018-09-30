@@ -120,4 +120,50 @@ public class MenuRenderer {
         mainFrame.drawMiddle(Stream.of(message,instructionFrame).toArray(Frame[]::new));
         System.out.println(mainFrame.getFrameForPrint());
     }
+
+    public void inGameHelpMenu() throws FrameSizeOutOfBound {
+        Frame mainFrame = new Frame(Config.MAX_WIDTH,Config.MAX_HEIGHT);
+        Frame message = new Frame("Help");
+        message.drawBorder();
+        Frame instructionFrame = new Frame(20,20);
+        Frame pressInstruction1 = new Frame("Direction/Control",true);
+        Frame pressInstruction2 = new Frame("UP - w",true);
+        Frame pressInstruction3 = new Frame("DOWN - s",true);
+        Frame pressInstruction4 = new Frame("LEFT - a",true);
+        Frame pressInstruction5 = new Frame("RIGHT - d",true);
+        Frame pressInstruction6 = new Frame("HELP - h",true);
+        Frame pressInstruction7 = new Frame("RETURN - 1",true);
+        Frame pressInstruction8 = new Frame("SAVR - 2",true);
+        Frame pressInstruction9 = new Frame("Main Menu - 3",true);
+        instructionFrame.drawMiddle(Stream.of(pressInstruction1,pressInstruction2,pressInstruction3,pressInstruction4,pressInstruction5,pressInstruction6,pressInstruction7,pressInstruction8,pressInstruction9).toArray(Frame[]::new));
+        instructionFrame.drawBorder();
+        mainFrame.drawMiddle(Stream.of(message,instructionFrame).toArray(Frame[]::new));
+        System.out.println(mainFrame.getFrameForPrint());
+    }
+
+    public void showGameOverMenu() throws FrameSizeOutOfBound {
+        Frame mainFrame = new Frame(Config.MAX_WIDTH,Config.MAX_HEIGHT);
+        Frame message = new Frame("Better luck next time.");
+        message.drawBorder();
+        Frame instructionFrame = new Frame(20,20);
+        Frame pressInstruction1 = new Frame("Press 1 to Start");
+        Frame pressInstruction3 = new Frame("Press 3 to Exit");
+        instructionFrame.drawMiddle(Stream.of(pressInstruction1,pressInstruction3).toArray(Frame[]::new));
+        instructionFrame.drawBorder();
+        mainFrame.drawMiddle(Stream.of(message,instructionFrame).toArray(Frame[]::new));
+        System.out.println(mainFrame.getFrameForPrint());
+    }
+
+    public void showVictoryMenu() throws FrameSizeOutOfBound {
+        Frame mainFrame = new Frame(Config.MAX_WIDTH,Config.MAX_HEIGHT);
+        Frame message = new Frame("Congratulation.");
+        message.drawBorder();
+        Frame instructionFrame = new Frame(20,20);
+        Frame pressInstruction1 = new Frame("Press 1 to Start");
+        Frame pressInstruction3 = new Frame("Press 3 to Exit");
+        instructionFrame.drawMiddle(Stream.of(pressInstruction1,pressInstruction3).toArray(Frame[]::new));
+        instructionFrame.drawBorder();
+        mainFrame.drawMiddle(Stream.of(message,instructionFrame).toArray(Frame[]::new));
+        System.out.println(mainFrame.getFrameForPrint());
+    }
 }

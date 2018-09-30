@@ -1,6 +1,7 @@
 package org.ni.rpg.singleton;
 
 import org.ni.rpg.composite.GameObject;
+import org.ni.rpg.entity.Dimension;
 import org.ni.rpg.entity.GameState;
 import org.ni.rpg.entity.Player;
 import org.ni.rpg.enums.State;
@@ -8,7 +9,9 @@ import org.ni.rpg.exception.FrameSizeOutOfBound;
 import org.ni.rpg.factory.GameObjectAbstractFactory;
 import org.ni.rpg.factory.GameObjectFactory;
 import org.ni.rpg.listener.KeyBoardListener;
+import org.ni.rpg.utils.Commons;
 import org.ni.rpg.utils.Config;
+import org.ni.rpg.utils.Constants;
 
 import java.io.*;
 import java.util.List;
@@ -92,9 +95,17 @@ public class GameEngine {
     }
 
     public void playerMoveRight(Player player) throws FrameSizeOutOfBound {
-        int positionX  = player.getAppearance().getPositionX();
-        if(positionX >= 0 && positionX <= gameState.getAppearance().getDimension().getWidth() - player.getSpeed() - player.getAppearance().getDimension().getWidth()) {
-            player.getAppearance().setPositionX(positionX + player.getSpeed());
+        if(player.getAppearance().getDirection().equals(GameController.RIGHT)) {
+            int positionX = player.getAppearance().getPositionX();
+            //if (positionX >= 0 && positionX <= gameState.getAppearance().getDimension().getWidth() - (player.getSpeed()*4) - player.getAppearance().getDimension().getWidth()) {
+                if(positionX + (player.getSpeed()*4) + player.getAppearance().getDimension().getWidth() <= gameState.getAppearance().getDimension().getWidth()) {
+                    player.getAppearance().setPositionX(positionX + player.getSpeed());
+                }else{
+                    player.getAppearance().setPositionX(gameState.getAppearance().getDimension().getWidth() - player.getAppearance().getDimension().getWidth());
+                }
+            //}
+        }else{
+            player.getAppearance().setDirection(GameController.RIGHT);
         }
 
     }
@@ -108,9 +119,17 @@ public class GameEngine {
     }
 
     public void playerMoveLeft(Player player) throws FrameSizeOutOfBound {
-        int positionX  = player.getAppearance().getPositionX();
-        if(positionX > 0 && positionX <= gameState.getAppearance().getDimension().getWidth() + player.getSpeed() - player.getAppearance().getDimension().getWidth()) {
-            player.getAppearance().setPositionX(positionX - player.getSpeed());
+        if(player.getAppearance().getDirection().equals(GameController.LEFT)) {
+            int positionX = player.getAppearance().getPositionX();
+            //if (positionX > 0 && positionX <= gameState.getAppearance().getDimension().getWidth() + (player.getSpeed()*4) - player.getAppearance().getDimension().getWidth()) {
+                if(positionX - (player.getSpeed()*4)>=0) {
+                    player.getAppearance().setPositionX(positionX - player.getSpeed());
+                }else{
+                    player.getAppearance().setPositionX(0);
+                }
+            //}
+        }else{
+            player.getAppearance().setDirection(GameController.LEFT);
         }
 
     }
@@ -124,9 +143,17 @@ public class GameEngine {
     }
 
     public void playerMoveDown(Player player) throws FrameSizeOutOfBound {
-        int positionY  = player.getAppearance().getPositionY();
-        if(positionY >= 0 && positionY <= gameState.getAppearance().getDimension().getHeight() - player.getSpeed() - player.getAppearance().getDimension().getHeight()) {
-            player.getAppearance().setPositionY(positionY + player.getSpeed());
+        if(player.getAppearance().getDirection().equals(GameController.DOWN)) {
+            int positionY = player.getAppearance().getPositionY();
+            //if (positionY >= 0 && positionY <= gameState.getAppearance().getDimension().getHeight() - player.getSpeed() - player.getAppearance().getDimension().getHeight()) {
+                if(positionY + player.getSpeed() + player.getAppearance().getDimension().getHeight() <= gameState.getAppearance().getDimension().getHeight()) {
+                    player.getAppearance().setPositionY(positionY + player.getSpeed());
+                }else{
+                    player.getAppearance().setPositionY(gameState.getAppearance().getDimension().getHeight() - player.getAppearance().getDimension().getHeight());
+                }
+            //}
+        }else{
+            player.getAppearance().setDirection(GameController.DOWN);
         }
 
     }
@@ -140,16 +167,24 @@ public class GameEngine {
     }
 
     public void playerMoveUp(Player player) throws FrameSizeOutOfBound {
-        int positionY  = player.getAppearance().getPositionY();
-        if(positionY > 0 && positionY <= gameState.getAppearance().getDimension().getHeight() + player.getSpeed() - player.getAppearance().getDimension().getHeight()) {
-            player.getAppearance().setPositionY(positionY - player.getSpeed());
+        if(player.getAppearance().getDirection().equals(GameController.UP)) {
+            int positionY = player.getAppearance().getPositionY();
+            //if (positionY > 0 && positionY <= gameState.getAppearance().getDimension().getHeight() + player.getSpeed() - player.getAppearance().getDimension().getHeight()) {
+                if(positionY - player.getSpeed()>=0) {
+                    player.getAppearance().setPositionY(positionY - player.getSpeed());
+                }else{
+                    player.getAppearance().setPositionY(0);
+                }
+            //}
+        }else{
+            player.getAppearance().setDirection(GameController.UP);
         }
     }
 
     public void aiMove() throws FrameSizeOutOfBound {
         List<Player> movableGameObject = gameState.getMovableGameObject();
         for(Player player : movableGameObject){
-            int direction = new Random().nextInt((4 - 1) + 1 ) + 1;
+            int direction = Commons.randInt(1,4);
             if(direction == 1){
                 playerMoveUp(player);
             }else if(direction == 2){
@@ -158,6 +193,11 @@ public class GameEngine {
                 playerMoveLeft(player);
             }else if(direction == 4){
                 playerMoveRight(player);
+            }
+        }
+        for(Player player : movableGameObject){
+            if(Commons.randInt(1,2)==2) {
+                aiAction(player);
             }
         }
     }
@@ -203,5 +243,74 @@ public class GameEngine {
         GameState gameState=null;
         CURRENT_STATE = State.MAIN_MENU;
         menuRenderer.showStartMenu();
+    }
+
+    public void playerAction() throws FrameSizeOutOfBound {
+        aiMove();
+        Player player = (Player)gameState.getGameObjct(gameState.getPlayerId());
+        aiAction(player);
+        this.generateFrame();
+    }
+    public void aiAction(Player player) throws FrameSizeOutOfBound {
+        List<Player> aiPlayerList = gameState.getAllKillAbleGameObject();
+        int alive = aiPlayerList.size();
+        int killed = 0;
+        for(Player aiPlayer: aiPlayerList){
+            boolean damageable = false;
+            if(!player.getId().equals(aiPlayer.getId()) && player.getAppearance().getDirection().equals(GameController.UP) && aiPlayer.getAppearance().getPositionX() != player.getAppearance().getPositionX() && aiPlayer.getAppearance().getPositionY() > player.getAppearance().getPositionY() && aiPlayer.getAppearance().getPositionY() - player.getWeapon().getRange() < player.getAppearance().getPositionY()) {
+                damageable = true;
+            }else if (!player.getId().equals(aiPlayer.getId()) && player.getAppearance().getDirection().equals(GameController.DOWN) && aiPlayer.getAppearance().getPositionX() != player.getAppearance().getPositionX() && aiPlayer.getAppearance().getPositionY() < player.getAppearance().getPositionY() && aiPlayer.getAppearance().getPositionY() + player.getWeapon().getRange() > player.getAppearance().getPositionY()){
+                damageable = true;
+            }else if (!player.getId().equals(aiPlayer.getId()) && player.getAppearance().getDirection().equals(GameController.LEFT) && aiPlayer.getAppearance().getPositionY() != player.getAppearance().getPositionY() && aiPlayer.getAppearance().getPositionX() > player.getAppearance().getPositionX() && aiPlayer.getAppearance().getPositionX() - player.getWeapon().getRange() < player.getAppearance().getPositionX()){
+                damageable = true;
+            }else if (!player.getId().equals(aiPlayer.getId()) && player.getAppearance().getDirection().equals(GameController.RIGHT) && aiPlayer.getAppearance().getPositionY() != player.getAppearance().getPositionY() && aiPlayer.getAppearance().getPositionX() < player.getAppearance().getPositionX() && aiPlayer.getAppearance().getPositionX() + player.getWeapon().getRange() > player.getAppearance().getPositionX()){
+                damageable = true;
+            }
+            if(damageable) {
+                if (aiPlayer.getHealth() - player.getWeapon().getAttack() < 0) {
+                    if(aiPlayer.getId().equals(gameState.getPlayerId())){
+                        showGameOverMenu();
+                    }
+                    killed++;
+                    aiPlayer.setHealth(0.0);
+                    Dimension dimension = Commons.calculateDimension(Constants.DEAD_CHAR);
+                    aiPlayer.getAppearance().setDimension(dimension);
+                    aiPlayer.getAppearance().setContent(Constants.DEAD_CHAR);
+                    aiPlayer.getAttribute().setCanBeKilled(false);
+                    aiPlayer.getAttribute().setCanMove(false);
+                    aiPlayer.getAttribute().setKilled(true);
+                    aiPlayer.getAttribute().setTakeDamage(false);
+                } else {
+                    aiPlayer.setHealth(aiPlayer.getHealth() - player.getWeapon().getAttack());
+                }
+            }
+        }
+        if((alive-1) == killed){
+            if(player.getId().equals(gameState.getPlayerId())){
+                showVictoryMenu();
+            } else {
+                showGameOverMenu();
+            }
+        }
+    }
+
+    public void showGameOverMenu() throws FrameSizeOutOfBound {
+        CURRENT_STATE = State.GAME_OVER;
+        menuRenderer.showGameOverMenu();
+    }
+
+    public void showVictoryMenu() throws FrameSizeOutOfBound {
+        CURRENT_STATE = State.VICTORY;
+        menuRenderer.showVictoryMenu();
+    }
+
+    public void showHelpMenu() throws FrameSizeOutOfBound {
+        CURRENT_STATE = State.HELP;
+        menuRenderer.inGameHelpMenu();
+    }
+
+    public void returnToGameFromHelpMenu() throws FrameSizeOutOfBound {
+        this.CURRENT_STATE = State.GAME_PLAY;
+        gameStateRenderer.generateFrame(gameState);
     }
 }

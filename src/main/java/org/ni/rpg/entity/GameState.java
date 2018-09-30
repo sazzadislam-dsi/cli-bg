@@ -2,6 +2,7 @@ package org.ni.rpg.entity;
 
 import org.ni.rpg.composite.GameObject;
 import org.ni.rpg.exception.FrameSizeOutOfBound;
+import org.ni.rpg.singleton.GameController;
 import org.ni.rpg.utils.Commons;
 import org.ni.rpg.utils.Config;
 
@@ -11,6 +12,7 @@ import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.PriorityBlockingQueue;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * Created by nazmul on 9/29/2018.
@@ -70,5 +72,28 @@ public class GameState extends GameObject {
                 .filter( v -> !v.getId().equals(this.getPlayerId()) )
                 .map( Player.class::cast )
                 .collect(Collectors.toList() );
+    }
+
+    public List<Player> getKillAbleGameObject(int positionX, int positionY, String direction, int range, String ignoreId) {
+
+        return gameObjects.values().stream()
+                .filter(Player.class::isInstance )
+                .filter( v -> v.getAttribute().isCanBeKilled() )
+                .filter( v -> !v.getId().equals(ignoreId))
+                .filter( v -> direction.equals(GameController.UP) && v.getAppearance().getPositionX() != positionX && v.getAppearance().getPositionY() > positionY && v.getAppearance().getPositionY() - range < positionY  )
+                .filter( v -> direction.equals(GameController.DOWN) && v.getAppearance().getPositionX() != positionX && v.getAppearance().getPositionY() < positionY && v.getAppearance().getPositionY() + range > positionY  )
+                .filter( v -> direction.equals(GameController.LEFT) && v.getAppearance().getPositionY() != positionY && v.getAppearance().getPositionX() > positionX && v.getAppearance().getPositionX() - range < positionX  )
+                .filter( v -> direction.equals(GameController.RIGHT) && v.getAppearance().getPositionY() != positionY && v.getAppearance().getPositionX() < positionX && v.getAppearance().getPositionX() + range > positionX  )
+                .map( Player.class::cast )
+                .collect(Collectors.toList());
+    }
+
+    public List<Player> getAllKillAbleGameObject() {
+
+        return gameObjects.values().stream()
+                .filter(Player.class::isInstance )
+                .filter( v -> v.getAttribute().isCanBeKilled() )
+                .map( Player.class::cast )
+                .collect(Collectors.toList());
     }
 }

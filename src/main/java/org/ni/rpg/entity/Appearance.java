@@ -14,14 +14,16 @@ public class Appearance implements Serializable{
     private Character[][] content;
     private String color;
     private boolean visible;
+    private String direction;
 
-    public Appearance(int positionX, int positionY, Dimension dimension, Character[][] content, String color, boolean visible) {
+    public Appearance(int positionX, int positionY, Dimension dimension, Character[][] content, String color, boolean visible,String direction) {
         this.positionX = positionX;
         this.positionY = positionY;
         this.dimension = dimension;
         this.content = content;
         this.color = color;
         this.visible = visible;
+        this.direction = direction;
     }
 
     public int getPositionX() {
@@ -70,5 +72,13 @@ public class Appearance implements Serializable{
 
     public void setVisible(boolean visible) {
         this.visible = visible;
+    }
+
+    public String getDirection() {
+        return direction;
+    }
+
+    public void setDirection(String direction) {
+        this.direction = direction;
     }
 }

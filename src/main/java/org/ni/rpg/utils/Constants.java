@@ -5,6 +5,7 @@ package org.ni.rpg.utils;
  */
 public class Constants {
     public static final String messageFrameSizeOutOfBound = "Frame size excited.";
-    public static final Character[][] PLAYER_CHAR = { {'.','.' },{'.','.' } };
-    public static final Character[][] ENEMY_CHAR = { {'E'} };
+    public static final Character[][] PLAYER_CHAR = { {'P','P' },{'P','P' } };
+    public static final Character[][] ENEMY_CHAR = { {'E','E'},{'E','E'} };
+    public static final Character[][] DEAD_CHAR = { {'X'} };
 }

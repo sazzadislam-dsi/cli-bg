@@ -1,6 +1,9 @@
 package org.ni.rpg.utils;
 
 import org.ni.rpg.entity.Dimension;
+import org.ni.rpg.singleton.GameController;
+
+import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * Created by nazmul on 9/29/2018.
@@ -35,5 +38,23 @@ public class Commons {
             }
         }
         return content;
+    }
+
+    public static int randInt(int min, int max) {
+        int randomNum = ThreadLocalRandom.current().nextInt(min, max + 1);
+        return randomNum;
+    }
+
+    public static String getDirection(){
+        int directionPredict = randInt(1,4);
+        if(directionPredict == 1){
+            return GameController.UP;
+        }else if(directionPredict == 2){
+            return GameController.DOWN;
+        }else if(directionPredict == 3){
+            return GameController.LEFT;
+        }else{
+            return GameController.RIGHT;
+        }
     }
 }

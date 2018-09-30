@@ -13,7 +13,6 @@ public class Player extends GameObject {
     private String name;
     private String description;
     private double health;
-    private char direction;
     private Weapon weapon;
     private Shield shield;
     private DrawStrategy drawStrategy;
@@ -24,12 +23,11 @@ public class Player extends GameObject {
     private String RIGHT;
     private String DOWN;
 
-    public Player(Appearance appearance, Attribute attribute, String name, String description, double health, char direction, Weapon weapon, Shield shield, DrawStrategy drawStrategy,int speed) {
+    public Player(Appearance appearance, Attribute attribute, String name, String description, double health, Weapon weapon, Shield shield, DrawStrategy drawStrategy,int speed) {
         super(appearance, attribute);
         this.name = name;
         this.description = description;
         this.health = health;
-        this.direction = direction;
         this.weapon = weapon;
         this.shield = shield;
         this.drawStrategy = drawStrategy;
@@ -64,14 +62,6 @@ public class Player extends GameObject {
         this.health = health;
     }
 
-    public char getDirection() {
-        return direction;
-    }
-
-    public void setDirection(char direction) {
-        this.direction = direction;
-    }
-
     public Weapon getWeapon() {
         return weapon;
     }
@@ -104,16 +94,4 @@ public class Player extends GameObject {
         this.speed = speed;
     }
 
-    @Override
-    public String toString() {
-        return "Player{" +
-                "name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                ", health=" + health +
-                ", direction=" + direction +
-                ", weapon=" + weapon +
-                ", shield=" + shield +
-                ", drawStrategy=" + drawStrategy +
-                '}';
-    }
 }
