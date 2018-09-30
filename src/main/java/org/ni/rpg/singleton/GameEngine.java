@@ -262,18 +262,20 @@ public class GameEngine {
         int alive = aiPlayerList.size();
         int killed = 0;
         for(Player aiPlayer: aiPlayerList){
-            boolean damageable = false;
-            if(!player.getId().equals(aiPlayer.getId()) && player.getAppearance().getDirection().equals(GameController.UP) && aiPlayer.getAppearance().getPositionX() != player.getAppearance().getPositionX() && aiPlayer.getAppearance().getPositionY() > player.getAppearance().getPositionY() && aiPlayer.getAppearance().getPositionY() - player.getWeapon().getRange() < player.getAppearance().getPositionY()) {
-                damageable = true;
-            }else if (!player.getId().equals(aiPlayer.getId()) && player.getAppearance().getDirection().equals(GameController.DOWN) && aiPlayer.getAppearance().getPositionX() != player.getAppearance().getPositionX() && aiPlayer.getAppearance().getPositionY() < player.getAppearance().getPositionY() && aiPlayer.getAppearance().getPositionY() + player.getWeapon().getRange() > player.getAppearance().getPositionY()){
-                damageable = true;
-            }else if (!player.getId().equals(aiPlayer.getId()) && player.getAppearance().getDirection().equals(GameController.LEFT) && aiPlayer.getAppearance().getPositionY() != player.getAppearance().getPositionY() && aiPlayer.getAppearance().getPositionX() > player.getAppearance().getPositionX() && aiPlayer.getAppearance().getPositionX() - player.getWeapon().getRange() < player.getAppearance().getPositionX()){
-                damageable = true;
-            }else if (!player.getId().equals(aiPlayer.getId()) && player.getAppearance().getDirection().equals(GameController.RIGHT) && aiPlayer.getAppearance().getPositionY() != player.getAppearance().getPositionY() && aiPlayer.getAppearance().getPositionX() < player.getAppearance().getPositionX() && aiPlayer.getAppearance().getPositionX() + player.getWeapon().getRange() > player.getAppearance().getPositionX()){
-                damageable = true;
+            int damageable = 0;
+            if(!player.getId().equals(aiPlayer.getId())) {
+                if ( player.getAppearance().getDirection().equals(GameController.UP) && aiPlayer.getAppearance().getPositionX() == player.getAppearance().getPositionX() && aiPlayer.getAppearance().getPositionY() < player.getAppearance().getPositionY() && aiPlayer.getAppearance().getPositionY() > player.getAppearance().getPositionY() - player.getWeapon().getRange() ) {
+                    damageable = +100;
+                }else if ( player.getAppearance().getDirection().equals(GameController.DOWN) && aiPlayer.getAppearance().getPositionX() == player.getAppearance().getPositionX() && aiPlayer.getAppearance().getPositionY() > player.getAppearance().getPositionY() && aiPlayer.getAppearance().getPositionY() < player.getAppearance().getPositionY() + player.getWeapon().getRange()) {
+                    damageable = +100;
+                } else if ( player.getAppearance().getDirection().equals(GameController.LEFT) && aiPlayer.getAppearance().getPositionY() == player.getAppearance().getPositionY() && aiPlayer.getAppearance().getPositionX() < player.getAppearance().getPositionX() && aiPlayer.getAppearance().getPositionX() > player.getAppearance().getPositionX() - (player.getWeapon().getRange() * 4)) {
+                    damageable = +100;
+                } else if ( player.getAppearance().getDirection().equals(GameController.RIGHT) && aiPlayer.getAppearance().getPositionY() == player.getAppearance().getPositionY() && aiPlayer.getAppearance().getPositionX() > player.getAppearance().getPositionX() && aiPlayer.getAppearance().getPositionX() < player.getAppearance().getPositionX() + (player.getWeapon().getRange() * 4)) {
+                    damageable = +100;
+                }
             }
-            if(damageable) {
-                if (aiPlayer.getHealth() - player.getWeapon().getAttack() < 0) {
+            if(damageable>0) {
+                if (aiPlayer.getHealth() - player.getWeapon().getAttack() <= 0.0) {
                     if(aiPlayer.getId().equals(gameState.getPlayerId())){
                         showGameOverMenu();
                     }

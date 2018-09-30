@@ -32,31 +32,36 @@ public class PlayerDrawStrategy implements DrawStrategy,Serializable {
                 }
                 startHeight++;
             }
-            if(gameObject.getAppearance().getDirection().equals(GameController.UP)){
-                if(gameObject.getAppearance().getPositionY()>0){
-                    content[gameObject.getAppearance().getPositionY()-1][gameObject.getAppearance().getPositionX()] = '|';
+            if(!gameObject.getAttribute().isKilled() ) {
+                if (gameObject.getAppearance().getDirection().equals(GameController.UP)) {
+                    if (gameObject.getAppearance().getPositionY() > 0) {
+                        content[gameObject.getAppearance().getPositionY() - 1][gameObject.getAppearance().getPositionX()] = '|';
+                    }
+                    getStatus(gameObject, dimension, content);
+                } else if (gameObject.getAppearance().getDirection().equals(GameController.DOWN)) {
+                    if (gameObject.getAppearance().getPositionY() + gameObject.getAppearance().getDimension().getHeight() < dimension.getHeight()) {
+                        content[gameObject.getAppearance().getPositionY() + gameObject.getAppearance().getDimension().getHeight()][gameObject.getAppearance().getPositionX() + 1] = '|';
+                    }
+                    getStatus(gameObject, dimension, content);
+                } else if (gameObject.getAppearance().getDirection().equals(GameController.LEFT)) {
+                    if (gameObject.getAppearance().getPositionX() > 0) {
+                        content[gameObject.getAppearance().getPositionY()][gameObject.getAppearance().getPositionX() - 1] = '-';
+                    }
+                    getStatus(gameObject, dimension, content);
+                } else if (gameObject.getAppearance().getDirection().equals(GameController.RIGHT)) {
+                    if (gameObject.getAppearance().getPositionX() + gameObject.getAppearance().getDimension().getWidth() < dimension.getWidth()) {
+                        content[gameObject.getAppearance().getPositionY()][gameObject.getAppearance().getPositionX() + gameObject.getAppearance().getDimension().getWidth() + 1] = '-';
+                    }
+                    getStatus(gameObject, dimension, content);
                 }
-                getStatus(gameObject,dimension,content);
-            }else if(gameObject.getAppearance().getDirection().equals(GameController.DOWN)){
-                if(gameObject.getAppearance().getPositionY()+gameObject.getAppearance().getDimension().getHeight()<dimension.getHeight()){
-                    content[gameObject.getAppearance().getPositionY()+gameObject.getAppearance().getDimension().getHeight()][gameObject.getAppearance().getPositionX()+1] = '|';
-                }
-                getStatus(gameObject,dimension,content);
-            }else if(gameObject.getAppearance().getDirection().equals(GameController.LEFT)){
-                if(gameObject.getAppearance().getPositionX()>0){
-                    content[gameObject.getAppearance().getPositionY()][gameObject.getAppearance().getPositionX()-1] = '-';
-                }
-                getStatus(gameObject,dimension,content);
-            }else if(gameObject.getAppearance().getDirection().equals(GameController.RIGHT)){
-                if(gameObject.getAppearance().getPositionX()+gameObject.getAppearance().getDimension().getWidth()<dimension.getWidth()){
-                    content[gameObject.getAppearance().getPositionY()][gameObject.getAppearance().getPositionX()+gameObject.getAppearance().getDimension().getWidth()+1] = '-';
-                }
-                getStatus(gameObject,dimension,content);
             }
-
-
+            helpWatermark(content,dimension);
         }
         return content;
+    }
+
+    private void helpWatermark(Character[][] content, Dimension dimension) {
+        drawText(content, 0,0 ,"Help-H", dimension.getWidth());
     }
 
     private void getStatus(GameObject gameObject, Dimension dimension, Character[][] content){
@@ -73,20 +78,24 @@ public class PlayerDrawStrategy implements DrawStrategy,Serializable {
             if(gameObject.getAppearance().getPositionX()-statusLengthHalf>=0){
                 startX = gameObject.getAppearance().getPositionX() - statusLengthHalf;
             }
-            try {
-                for (int i = 0; i < statusCharArr.length; i++) {
-                    if (content[startY][startX].equals(' ')) {
-                        content[startY][startX] = statusCharArr[i];
-                    }
-                    startX++;
-                    if (startX >= dimension.getWidth()) {
-                        break;
-                    }
-                }
-            }catch (Exception ex){
-                ex.printStackTrace();
-            }
-
+            drawText(content, startX, startY, status, dimension.getWidth());
         }
     }
+    private void drawText(Character[][] content, int positionX, int positionY, String text, int limit) {
+        char[] textCharArr = text.toCharArray();
+        try {
+            for (int i = 0; i < textCharArr.length; i++) {
+                if (content[positionY][positionX].equals(' ')) {
+                    content[positionY][positionX] = textCharArr[i];
+                }
+                positionX++;
+                if (positionX >= limit) {
+                    break;
+                }
+            }
+        }catch (Exception ex){
+            ex.printStackTrace();
+        }
+    }
+
 }

@@ -54,7 +54,7 @@ public class GameObjectFactory implements GameObjectAbstractFactory {
             attack = Config.AI_PLAYER_ATTACK;
             range = Config.AI_PLAYER_RANGE;
             speed = Config.AI_PLAYER_SPEED;
-            String aiPlayerName = "Enemy-"+1;
+            String aiPlayerName = "Enemy-"+i;
             health = Config.AI_PLAYER_HEALTH;
             direction = Commons.getDirection();
             Player aiPlayer = createPlayer(positionX,positionY,playerContent,color,attack,range,protection,aiPlayerName,description,health,direction,speed);
