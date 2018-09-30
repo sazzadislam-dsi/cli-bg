@@ -1,6 +1,7 @@
 package org.ni.rpg.utils;
 
 import org.ni.rpg.entity.Dimension;
+import org.ni.rpg.entity.Player;
 import org.ni.rpg.singleton.GameController;
 
 import java.util.List;
@@ -97,5 +98,12 @@ public class Commons {
         }
 
         return false;
+    }
+    public static String getStatusLine(Player player) {
+        StringBuffer stringBuffer = new StringBuffer();
+        stringBuffer.append(player.getName()).append("-").append("H:").append(player.getHealth()).append(" ")
+                .append("A:").append(player.getWeapon().getAttack()).append(" ")
+                .append("K:").append(player.getKilled());
+        return stringBuffer.toString();
     }
 }
