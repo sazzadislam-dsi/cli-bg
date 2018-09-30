@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.PriorityBlockingQueue;
+import java.util.stream.Collectors;
 
 /**
  * Created by nazmul on 9/29/2018.
@@ -60,5 +61,14 @@ public class GameState extends GameObject {
 
     public GameObject getGameObjct(String key) {
         return gameObjects.get(key);
+    }
+
+    public List<Player> getMovableGameObject() {
+        return gameObjects.values().stream()
+                .filter(Player.class::isInstance )
+                .filter( v -> v.getAttribute().isCanMove() )
+                .filter( v -> !v.getId().equals(this.getPlayerId()) )
+                .map( Player.class::cast )
+                .collect(Collectors.toList() );
     }
 }

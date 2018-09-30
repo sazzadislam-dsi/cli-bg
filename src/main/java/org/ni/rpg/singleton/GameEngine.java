@@ -11,6 +11,8 @@ import org.ni.rpg.listener.KeyBoardListener;
 import org.ni.rpg.utils.Config;
 
 import java.io.*;
+import java.util.List;
+import java.util.Random;
 
 /**
  * Created by nazmul on 9/29/2018.
@@ -81,55 +83,82 @@ public class GameEngine {
         System.exit(0);
     }
 
-    public void playerMoveRight() {
+    public void playerMoveRight() throws FrameSizeOutOfBound {
+        aiMove();
         Player player = (Player)gameState.getGameObjct(gameState.getPlayerId());
+        playerMoveRight(player);
+        this.generateFrame();
+
+    }
+
+    public void playerMoveRight(Player player) throws FrameSizeOutOfBound {
         int positionX  = player.getAppearance().getPositionX();
-        if(positionX > 0 && positionX < Config.MAX_WIDTH - player.getSpeed()) {
+        if(positionX >= 0 && positionX <= gameState.getAppearance().getDimension().getWidth() - player.getSpeed() - player.getAppearance().getDimension().getWidth()) {
             player.getAppearance().setPositionX(positionX + player.getSpeed());
         }
-        try {
-            this.generateFrame();
-        } catch (FrameSizeOutOfBound frameSizeOutOfBound) {
-            frameSizeOutOfBound.printStackTrace();
-        }
+
     }
 
-    public void playerMoveLeft() {
+    public void playerMoveLeft() throws FrameSizeOutOfBound {
+        aiMove();
         Player player = (Player)gameState.getGameObjct(gameState.getPlayerId());
+        playerMoveLeft(player);
+        this.generateFrame();
+
+    }
+
+    public void playerMoveLeft(Player player) throws FrameSizeOutOfBound {
         int positionX  = player.getAppearance().getPositionX();
-        if(positionX > 0 && positionX < Config.MAX_WIDTH - player.getSpeed()) {
+        if(positionX > 0 && positionX <= gameState.getAppearance().getDimension().getWidth() + player.getSpeed() - player.getAppearance().getDimension().getWidth()) {
             player.getAppearance().setPositionX(positionX - player.getSpeed());
         }
-        try {
-            this.generateFrame();
-        } catch (FrameSizeOutOfBound frameSizeOutOfBound) {
-            frameSizeOutOfBound.printStackTrace();
-        }
+
     }
 
-    public void playerMoveDown() {
+    public void playerMoveDown() throws FrameSizeOutOfBound {
+        aiMove();
         Player player = (Player)gameState.getGameObjct(gameState.getPlayerId());
+        playerMoveDown(player);
+        this.generateFrame();
+
+    }
+
+    public void playerMoveDown(Player player) throws FrameSizeOutOfBound {
         int positionY  = player.getAppearance().getPositionY();
-        if(positionY > 0 && positionY < Config.MAX_HEIGHT - player.getSpeed()) {
+        if(positionY >= 0 && positionY <= gameState.getAppearance().getDimension().getHeight() - player.getSpeed() - player.getAppearance().getDimension().getHeight()) {
             player.getAppearance().setPositionY(positionY + player.getSpeed());
         }
-        try {
-            this.generateFrame();
-        } catch (FrameSizeOutOfBound frameSizeOutOfBound) {
-            frameSizeOutOfBound.printStackTrace();
+
+    }
+
+    public void playerMoveUp() throws FrameSizeOutOfBound {
+        aiMove();
+        Player player = (Player)gameState.getGameObjct(gameState.getPlayerId());
+        playerMoveUp(player);
+        this.generateFrame();
+
+    }
+
+    public void playerMoveUp(Player player) throws FrameSizeOutOfBound {
+        int positionY  = player.getAppearance().getPositionY();
+        if(positionY > 0 && positionY <= gameState.getAppearance().getDimension().getHeight() + player.getSpeed() - player.getAppearance().getDimension().getHeight()) {
+            player.getAppearance().setPositionY(positionY - player.getSpeed());
         }
     }
 
-    public void playerMoveUp() {
-        Player player = (Player)gameState.getGameObjct(gameState.getPlayerId());
-        int positionY  = player.getAppearance().getPositionY();
-        if(positionY > 0 && positionY < Config.MAX_HEIGHT - player.getSpeed()) {
-            player.getAppearance().setPositionY(positionY - player.getSpeed());
-        }
-        try {
-            this.generateFrame();
-        } catch (FrameSizeOutOfBound frameSizeOutOfBound) {
-            frameSizeOutOfBound.printStackTrace();
+    public void aiMove() throws FrameSizeOutOfBound {
+        List<Player> movableGameObject = gameState.getMovableGameObject();
+        for(Player player : movableGameObject){
+            int direction = new Random().nextInt((4 - 1) + 1 ) + 1;
+            if(direction == 1){
+                playerMoveUp(player);
+            }else if(direction == 2){
+                playerMoveDown(player);
+            }else if(direction == 3){
+                playerMoveLeft(player);
+            }else if(direction == 4){
+                playerMoveRight(player);
+            }
         }
     }
 
@@ -145,10 +174,8 @@ public class GameEngine {
 
     public void gameSave() throws IOException, FrameSizeOutOfBound {
         String filename = "gameState.sav";
-        FileOutputStream file = new FileOutputStream
-                (filename);
-        ObjectOutputStream out = new ObjectOutputStream
-                (file);
+        FileOutputStream file = new FileOutputStream(filename);
+        ObjectOutputStream out = new ObjectOutputStream(file);
         out.writeObject(gameState);
         out.close();
         file.close();

@@ -21,6 +21,7 @@ public class GameStateRenderer {
         Frame frame = new Frame();
         frame.drawAtPosition(1,1,characters);
         frame.drawBorder();
+
         System.out.println(frame.getFrameForPrint());
     }
     public Character[][] getGameFrame(GameState gameState) throws FrameSizeOutOfBound {
