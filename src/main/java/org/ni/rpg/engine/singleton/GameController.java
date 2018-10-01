@@ -1,4 +1,4 @@
-package org.ni.rpg.singleton;
+package org.ni.rpg.engine.singleton;
 
 import org.ni.rpg.enums.State;
 import org.ni.rpg.exception.FrameSizeOutOfBound;

@@ -1,16 +1,14 @@
-package org.ni.rpg.composite;
+package org.ni.rpg.core.composite;
 
 
 import org.junit.AfterClass;
-import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.ni.rpg.entity.Appearance;
-import org.ni.rpg.entity.Attribute;
-import org.ni.rpg.entity.Dimension;
-import org.ni.rpg.entity.GameState;
+import org.ni.rpg.core.enitiy.Appearance;
+import org.ni.rpg.core.enitiy.Attribute;
+import org.ni.rpg.core.enitiy.Dimension;
 import org.ni.rpg.exception.FrameSizeOutOfBound;
-import org.ni.rpg.singleton.GameController;
+import org.ni.rpg.engine.singleton.GameController;
 
 import static org.junit.Assert.*;
 

@@ -1,10 +1,8 @@
-package org.ni.rpg.strategy.impl;
+package org.ni.rpg.core.strategy;
 
-import org.ni.rpg.composite.GameObject;
-import org.ni.rpg.entity.Dimension;
-import org.ni.rpg.entity.Frame;
+import org.ni.rpg.core.composite.GameObject;
+import org.ni.rpg.core.enitiy.Dimension;
 import org.ni.rpg.exception.FrameSizeOutOfBound;
-import org.ni.rpg.strategy.DrawStrategy;
 import org.ni.rpg.utils.Commons;
 
 import java.io.Serializable;

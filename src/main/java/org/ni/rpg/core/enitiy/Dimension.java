@@ -1,4 +1,4 @@
-package org.ni.rpg.entity;
+package org.ni.rpg.core.enitiy;
 
 import java.io.Serializable;
 

@@ -3,10 +3,13 @@ package org.ni.rpg.entity;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.ni.rpg.composite.GameObject;
+import org.ni.rpg.core.composite.GameObject;
+import org.ni.rpg.core.enitiy.Appearance;
+import org.ni.rpg.core.enitiy.Attribute;
+import org.ni.rpg.core.enitiy.Dimension;
+import org.ni.rpg.core.enitiy.GameState;
 import org.ni.rpg.exception.FrameSizeOutOfBound;
-import org.ni.rpg.singleton.GameController;
+import org.ni.rpg.engine.singleton.GameController;
 
 import static org.junit.Assert.*;
 

@@ -1,7 +1,7 @@
 package org.ni.rpg.listener;
 
 import org.ni.rpg.exception.FrameSizeOutOfBound;
-import org.ni.rpg.singleton.GameEngine;
+import org.ni.rpg.engine.singleton.GameEngine;
 
 import java.io.IOException;
 import java.util.Scanner;

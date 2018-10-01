@@ -1,8 +1,8 @@
-package org.ni.rpg.entity;
+package org.ni.rpg.core.enitiy;
 
-import org.ni.rpg.composite.GameObject;
+import org.ni.rpg.core.composite.GameObject;
 import org.ni.rpg.exception.FrameSizeOutOfBound;
-import org.ni.rpg.strategy.DrawStrategy;
+import org.ni.rpg.core.strategy.DrawStrategy;
 
 /**
  * Created by nazmul on 9/29/2018.

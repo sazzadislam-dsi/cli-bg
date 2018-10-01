@@ -1,6 +1,6 @@
-package org.ni.rpg.singleton;
+package org.ni.rpg.engine.singleton;
 
-import org.ni.rpg.entity.Frame;
+import org.ni.rpg.core.enitiy.Frame;
 import org.ni.rpg.exception.FrameSizeOutOfBound;
 import org.ni.rpg.utils.Commons;
 import org.ni.rpg.utils.Config;
@@ -151,7 +151,9 @@ public class MenuRenderer {
         Frame pressInstruction7 = new Frame("START - 1",true);
         Frame pressInstruction8 = new Frame("SAVE - 2",true);
         Frame pressInstruction9 = new Frame("Main Menu - 3",true);
-        instructionFrame.drawMiddle(Stream.of(pressInstruction1,pressInstruction2,pressInstruction3,pressInstruction4,pressInstruction5,pressInstruction10,pressInstruction6,pressInstruction7,pressInstruction8,pressInstruction9).toArray(Frame[]::new));
+        instructionFrame.drawMiddle(Stream.of(pressInstruction1,pressInstruction2,
+                pressInstruction3,pressInstruction4,pressInstruction5,pressInstruction10,
+                pressInstruction6,pressInstruction7,pressInstruction8,pressInstruction9).toArray(Frame[]::new));
         instructionFrame.drawBorder();
         mainFrame.drawMiddle(Stream.of(message,instructionFrame).toArray(Frame[]::new));
         System.out.println(mainFrame.getFrameForPrint());
@@ -189,14 +191,22 @@ public class MenuRenderer {
         message.drawBorder();
         Frame instructionFrame = new Frame(85,20);
         Frame pressInstruction1 = new Frame("Welcome 1st cli base battle royal game.",true);
-        Frame pressInstruction2 = new Frame("You are about to enter into the shooting area with "+Config.AI_PLAYER+" players.",true);
-        Frame pressInstruction3 = new Frame("You need to survive to win the game and kill other players.",true);
-        Frame pressInstruction4 = new Frame("Use 'w','s','a','d' to move up down left right and press 'f' to shoot other player.",true);
-        Frame pressInstruction5 = new Frame("You can pause anytime in the game and resume.",true);
-        Frame pressInstruction6 = new Frame("Please save the game if you want to play where you left off. Best of luck!",true);
-        Frame pressInstruction7 = new Frame("P - Player, E - Enemy, T - Tree, (-) Indicating yous gun point.",true);
+        Frame pressInstruction2 = new Frame("You are about to enter into the shooting area " +
+                                                       "with "+Config.AI_PLAYER+" players.",true);
+        Frame pressInstruction3 = new Frame("You need to survive to win the game " +
+                                                        "and kill other players.",true);
+        Frame pressInstruction4 = new Frame("Use 'w','s','a','d' to move up down " +
+                                                        "left right and press 'f' to shoot other player.",true);
+        Frame pressInstruction5 = new Frame("You can pause anytime in the " +
+                                                        "game and resume.",true);
+        Frame pressInstruction6 = new Frame("Please save the game if you want to play " +
+                                                        "where you left off. Best of luck!",true);
+        Frame pressInstruction7 = new Frame("P - Player, E - Enemy, T - Tree, (-) " +
+                                                        "Indicating yous gun point.",true);
         Frame pressInstruction8 = new Frame("Press 1 to Continue");
-        instructionFrame.drawMiddle(Stream.of(pressInstruction1,pressInstruction2,pressInstruction3,pressInstruction4,pressInstruction5,pressInstruction6,pressInstruction7,pressInstruction8).toArray(Frame[]::new));
+        instructionFrame.drawMiddle(Stream.of(pressInstruction1,pressInstruction2,
+                pressInstruction3,pressInstruction4,pressInstruction5,pressInstruction6,
+                pressInstruction7,pressInstruction8).toArray(Frame[]::new));
         instructionFrame.drawBorder();
         mainFrame.drawMiddle(Stream.of(message,instructionFrame).toArray(Frame[]::new));
         System.out.println(mainFrame.getFrameForPrint());

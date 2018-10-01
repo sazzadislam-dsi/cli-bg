@@ -1,9 +1,6 @@
-package org.ni.rpg.strategy.impl;
+package org.ni.rpg.core.strategy;
 
-import org.ni.rpg.composite.GameObject;
-import org.ni.rpg.entity.Appearance;
-import org.ni.rpg.entity.Attribute;
-import org.ni.rpg.strategy.DrawStrategy;
+import org.ni.rpg.core.composite.GameObject;
 
 /**
  * Created by nazmul on 9/29/2018.

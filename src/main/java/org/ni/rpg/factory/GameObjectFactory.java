@@ -1,10 +1,9 @@
 package org.ni.rpg.factory;
 
-import org.ni.rpg.entity.*;
-import org.ni.rpg.singleton.GameController;
-import org.ni.rpg.strategy.DrawStrategy;
-import org.ni.rpg.strategy.impl.GameObjectDrawStrategy;
-import org.ni.rpg.strategy.impl.PlayerDrawStrategy;
+import org.ni.rpg.core.enitiy.*;
+import org.ni.rpg.core.strategy.DrawStrategy;
+import org.ni.rpg.core.strategy.GameObjectDrawStrategy;
+import org.ni.rpg.core.strategy.PlayerDrawStrategy;
 import org.ni.rpg.utils.Commons;
 import org.ni.rpg.utils.Config;
 import org.ni.rpg.utils.Constants;
@@ -44,7 +43,8 @@ public class GameObjectFactory implements GameObjectAbstractFactory {
         String description = "";
         double health = Config.PLAYER_HEALTH;
         String direction = Commons.getDirection();
-        Player player = createPlayer(positionX,positionY,playerContent,color,attack,range,protection,name,description,health,direction,speed);
+        Player player = createPlayer(positionX,positionY,playerContent,
+                                    color,attack,range,protection,name,description,health,direction,speed);
         gameState.addGameObject(player);
         gameState.setPlayerId(player.getId());
         for(int i=0; i < Config.AI_PLAYER; i++){
@@ -57,7 +57,8 @@ public class GameObjectFactory implements GameObjectAbstractFactory {
             String aiPlayerName = "Enemy-"+i;
             health = Config.AI_PLAYER_HEALTH;
             direction = Commons.getDirection();
-            Player aiPlayer = createPlayer(positionX,positionY,playerContent,color,attack,range,protection,aiPlayerName,description,health,direction,speed);
+            Player aiPlayer = createPlayer(positionX,positionY,playerContent,
+                                    color,attack,range,protection,aiPlayerName,description,health,direction,speed);
             gameState.addGameObject(aiPlayer);
         }
         for(int i=0; i < Config.OBSTACLE; i++){
@@ -73,10 +74,13 @@ public class GameObjectFactory implements GameObjectAbstractFactory {
     }
 
     @Override
-    public Obstacle createObstacle(int positionX, int positionY, Character[][] content, String color, double attack, int range, int protection) {
-        Attribute attribute = new Attribute(false, false, false, false, false, false);
+    public Obstacle createObstacle(int positionX, int positionY, Character[][] content,
+                                   String color, double attack, int range, int protection) {
+        Attribute attribute = new Attribute(false, false,
+                                false, false, false, false);
         Dimension dimension = Commons.calculateDimension(content);
-        Appearance appearance = new Appearance(positionX, positionY, dimension, content, color, true, "");
+        Appearance appearance = new Appearance(positionX, positionY, dimension,
+                                content, color, true, "");
         DrawStrategy drawStrategy = new GameObjectDrawStrategy();
         return new Obstacle(appearance, attribute, drawStrategy);
     }

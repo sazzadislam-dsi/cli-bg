@@ -1,7 +1,7 @@
-package org.ni.rpg.singleton;
+package org.ni.rpg.engine.singleton;
 
-import org.ni.rpg.entity.Frame;
-import org.ni.rpg.entity.GameState;
+import org.ni.rpg.core.enitiy.Frame;
+import org.ni.rpg.core.enitiy.GameState;
 import org.ni.rpg.exception.FrameSizeOutOfBound;
 
 /**

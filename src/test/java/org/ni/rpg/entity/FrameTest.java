@@ -1,11 +1,8 @@
 package org.ni.rpg.entity;
 
 import org.junit.Test;
-import org.ni.rpg.entity.Frame;
-import org.ni.rpg.entity.Player;
+import org.ni.rpg.core.enitiy.Frame;
 import org.ni.rpg.exception.FrameSizeOutOfBound;
-import org.ni.rpg.factory.GameObjectAbstractFactory;
-import org.ni.rpg.factory.GameObjectFactory;
 
 import java.util.stream.Stream;
 

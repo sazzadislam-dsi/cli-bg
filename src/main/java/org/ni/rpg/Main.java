@@ -1,6 +1,6 @@
 package org.ni.rpg;
 
-import org.ni.rpg.singleton.GameEngine;
+import org.ni.rpg.engine.singleton.GameEngine;
 import org.ni.rpg.exception.FrameSizeOutOfBound;
 
 

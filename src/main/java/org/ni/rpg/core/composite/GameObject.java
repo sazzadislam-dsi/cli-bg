@@ -1,7 +1,7 @@
-package org.ni.rpg.composite;
+package org.ni.rpg.core.composite;
 
-import org.ni.rpg.entity.Appearance;
-import org.ni.rpg.entity.Attribute;
+import org.ni.rpg.core.enitiy.Appearance;
+import org.ni.rpg.core.enitiy.Attribute;
 import org.ni.rpg.exception.FrameSizeOutOfBound;
 
 import java.io.Serializable;
@@ -57,8 +57,4 @@ public abstract class GameObject implements Serializable {
         this.statOn = statOn;
     }
 
-    /*@Override
-    public int compareTo(GameObject gameObject) {
-        return Integer.compare(appearance.getPositionX(),gameObject.getAppearance().getPositionX());
-    }*/
 }

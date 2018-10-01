@@ -1,4 +1,4 @@
-package org.ni.rpg.entity;
+package org.ni.rpg.core.enitiy;
 
 import java.io.Serializable;
 
@@ -15,7 +15,8 @@ public class Attribute implements Serializable {
     private boolean killed;
     private boolean removeAfterKilled;
 
-    public Attribute(boolean canMove, boolean goThrough, boolean takeDamage, boolean canBeKilled, boolean killed, boolean removeAfterKilled) {
+    public Attribute(boolean canMove, boolean goThrough, boolean takeDamage,
+                     boolean canBeKilled, boolean killed, boolean removeAfterKilled) {
         this.canMove = canMove;
         this.goThrough = goThrough;
         this.takeDamage = takeDamage;

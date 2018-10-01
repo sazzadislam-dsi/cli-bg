@@ -1,8 +1,8 @@
 package org.ni.rpg.utils;
 
-import org.ni.rpg.entity.Dimension;
-import org.ni.rpg.entity.Player;
-import org.ni.rpg.singleton.GameController;
+import org.ni.rpg.core.enitiy.Dimension;
+import org.ni.rpg.core.enitiy.Player;
+import org.ni.rpg.engine.singleton.GameController;
 
 import java.util.List;
 import java.util.Map;

@@ -4,6 +4,8 @@ package org.ni.rpg.entity;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.ni.rpg.core.enitiy.Appearance;
+import org.ni.rpg.core.enitiy.Dimension;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;

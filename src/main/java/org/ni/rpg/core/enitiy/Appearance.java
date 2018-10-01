@@ -1,4 +1,4 @@
-package org.ni.rpg.entity;
+package org.ni.rpg.core.enitiy;
 
 import java.io.Serializable;
 
@@ -16,7 +16,8 @@ public class Appearance implements Serializable{
     private boolean visible;
     private String direction;
 
-    public Appearance(int positionX, int positionY, Dimension dimension, Character[][] content, String color, boolean visible,String direction) {
+    public Appearance(int positionX, int positionY, Dimension dimension, Character[][] content,
+                      String color, boolean visible,String direction) {
         this.positionX = positionX;
         this.positionY = positionY;
         this.dimension = dimension;
